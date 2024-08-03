@@ -1,0 +1,9 @@
+/src
+/node_modules
+/.idea
+/public
+
+tsconfig.json
+tsup.config.ts
+
+*.tgz
