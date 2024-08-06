@@ -1,1 +1,1 @@
-export {default as ChipComponent} from './Chip'
+export { default as ChipComponent } from './Chip';

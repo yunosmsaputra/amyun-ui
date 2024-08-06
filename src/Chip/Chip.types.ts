@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react';
 
-export interface IChip extends React.PropsWithChildren{
-    type?: string
+export interface IChip extends React.PropsWithChildren {
+  type?: string;
+  size?: string;
 }

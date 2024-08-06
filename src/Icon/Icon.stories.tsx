@@ -5,23 +5,30 @@ import Icon from './Icon';
 const meta = {
   component: Icon,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
   argTypes: {
     size: {
       description: 'Size Icon',
-      control: 'number'
+      control: 'number',
     },
     color: {
       description: 'Color icon',
-      control: 'text'
+      control: 'color',
     },
     name: {
       description: 'Icon name',
-      control: 'select',
-      options: ['ic-plus']
-    }
-  }
+      control: 'radio',
+      options: [
+        'ic-plus',
+        'ic-sort-default',
+        'ic-sort-ascending',
+        'ic-sort-descending',
+        'ic-arrow-right',
+        'ic-ion-apps',
+      ],
+    },
+  },
 } satisfies Meta<typeof Icon>;
 
 export default meta;
@@ -32,6 +39,6 @@ export const Default: Story = {
   args: {
     size: 14,
     color: '#2671D9',
-    name: 'ic-plus'
-  }
+    name: 'ic-plus',
+  },
 };

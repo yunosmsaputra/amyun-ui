@@ -2,8 +2,10 @@
 /node_modules
 /.idea
 /public
+/.storybook
 
 tsconfig.json
 tsup.config.ts
+*.config.*
 
 *.tgz
