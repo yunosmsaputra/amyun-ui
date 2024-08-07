@@ -26,7 +26,14 @@ const meta = {
         'ic-sort-descending',
         'ic-arrow-right',
         'ic-ion-apps',
+        'ic-three-dots',
       ],
+    },
+    className: {
+      table: { disable: true },
+    },
+    style: {
+      table: { disable: true },
     },
   },
 } satisfies Meta<typeof Icon>;

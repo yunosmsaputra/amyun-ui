@@ -8,7 +8,7 @@ const TextComponent: React.FC<IText> = ({
   weight,
   children,
   style,
-    className
+  className,
 }) => {
   return (
     <TextStyled

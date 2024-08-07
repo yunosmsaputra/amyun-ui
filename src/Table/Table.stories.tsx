@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import TableComponent from './Table';
-import { Simulate } from 'react-dom/test-utils';
-import click = Simulate.click;
+import React from 'react';
+import Button from '../Button/Button';
 
 const meta = {
   component: TableComponent,
@@ -13,19 +13,20 @@ const meta = {
       control: 'object',
     },
     style: {
-      description: 'Define custom style if needed',
+      table: { table: true },
     },
     columnSort: {
       description: `Get column and sort type<br>Return <b>columnKey</b> and <b>sortType</b>`,
       action: 'clicked',
     },
     className: {
-      table: {disable: true}
+      table: { disable: true },
     },
     data: {
-      description: 'Set Data to show in table body <br/>(key object must same as <b>column.key</b>)',
-      control: "object"
-    }
+      description:
+        'Set Data to show in table body <br/>(key object must same as <b>column.key</b> / <br/>can use <b>renderKey</b> in column (<i>render(keyColumn)</i>)',
+      control: 'object',
+    },
   },
 } satisfies Meta<typeof TableComponent>;
 
@@ -51,23 +52,25 @@ export const Default: Story = {
         key: 'description',
         sort: false,
       },
+      {
+        title: '',
+        key: '',
+        sort: false,
+        width: 52,
+        render: () => {
+          return (
+            <Button
+              btnIcon="ic-three-dots"
+              color="light-grey"
+              iconColor="#9C9C9C"
+              iconSize={12}
+              onClick={() => {}}
+              variant="solid"
+            />
+          );
+        },
+      },
     ],
-    data: [{
-      code: 'DT0001',
-      name: 'Data 0001',
-      description: 'Description for data 0001'
-    },{
-      code: 'DT0002',
-      name: 'Data 0002',
-      description: 'Description for data 0002'
-    },{
-      code: 'DT0003',
-      name: 'Data 0003',
-      description: 'Description for data 0003'
-    },{
-      code: 'DT0004',
-      name: 'Data 0004',
-      description: 'Description for data 0004'
-    }]
+    data: [],
   },
 };

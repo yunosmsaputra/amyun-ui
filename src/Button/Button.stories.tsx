@@ -50,12 +50,6 @@ const meta = {
       control: 'number',
       name: 'Icon Size',
     },
-    iconGap: {
-      description:
-        'Margin within Icon and Label Button (only use with Prepend and Append Icon)',
-      control: 'number',
-      name: 'Icon Gap / Margin',
-    },
     style: {
       description: 'Custom style if needed',
       name: 'Custom Styles',
@@ -82,6 +76,13 @@ export const WithIcon: Story = {
     appendIcon: 'ic-ion-apps',
     iconColor: '#FFF',
     iconSize: 14,
-    iconGap: 6,
+  },
+};
+
+export const IconButton: Story = {
+  args: {
+    btnIcon: 'ic-plus',
+    iconColor: '#2671D9',
+    iconSize: 8,
   },
 };

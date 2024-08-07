@@ -7,10 +7,15 @@ const FlexComponent: React.FC<IFlex> = ({
   alignItems,
   gap,
   children,
-    className
+  className,
 }) => {
   return (
-    <FlexStyles $justify={justifyContent} $align={alignItems} $gap={gap} className={className}>
+    <FlexStyles
+      $justify={justifyContent}
+      $align={alignItems}
+      $gap={gap}
+      className={className}
+    >
       {React.Children.toArray(children)}
     </FlexStyles>
   );

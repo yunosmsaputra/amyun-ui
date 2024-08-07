@@ -8,7 +8,7 @@ export interface IButton {
   appendIcon?: string;
   iconSize?: number;
   iconColor?: string;
-  iconGap?: number;
+  btnIcon?: string;
   onClick?: () => void;
   style?: React.CSSProperties;
 }
