@@ -33,9 +33,10 @@ const meta = {
     },
     isStickyColumn: {
       name: 'Sticky Column',
-      description: 'To make 1 or more column sticky, can be furthest to the left or right or both<br/>Use <b>sticky: true</b> to the column that want to be sticky and set <b>left / right position</b><br/>All Column must have <b>width</b> property',
-      control: 'boolean'
-    }
+      description:
+        'To make 1 or more column sticky, can be furthest to the left or right or both<br/>Use <b>sticky: true</b> to the column that want to be sticky and set <b>left / right position</b><br/>All Column must have <b>width</b> property',
+      control: 'boolean',
+    },
   },
 } satisfies Meta<typeof TableComponent>;
 
@@ -163,7 +164,7 @@ export const StickyColumn: Story = {
         sort: true,
         width: 200,
         sticky: true,
-        left: '0px'
+        left: '0px',
       },
       {
         title: 'Name',
@@ -184,18 +185,18 @@ export const StickyColumn: Story = {
         width: 52,
         render: () => {
           return (
-              <Button
-                  btnIcon="ic-three-dots"
-                  color="light-grey"
-                  iconColor="#9C9C9C"
-                  iconSize={12}
-                  onClick={() => {}}
-                  variant="solid"
-              />
+            <Button
+              btnIcon="ic-three-dots"
+              color="light-grey"
+              iconColor="#9C9C9C"
+              iconSize={12}
+              onClick={() => {}}
+              variant="solid"
+            />
           );
         },
         sticky: true,
-        right: '0px'
+        right: '0px',
       },
     ],
     data: [

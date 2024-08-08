@@ -32,6 +32,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prettier": "npx prettier src/**/*.{ts,tsx} --write --tab-width 2 --single-quote",
+    "gitstage": "git add .",
+    "gitcommit": "git commit -m 'update from husky'",
     "prepare": "husky"
   },
   "eslintConfig": {

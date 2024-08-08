@@ -1,1 +1,6 @@
-npm run prettier
+npm run prettier || { echo 'Failed when formatting the codes'; exit 1; }
+
+if [ $? -ne 0 ]; then
+  echo "Prettier formatting failed. Please fix the issues and try again."
+  exit 1
+fi
