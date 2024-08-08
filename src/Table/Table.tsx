@@ -115,9 +115,5 @@ export const NoDataComponent: React.FC<React.PropsWithChildren> = ({
   return <div>{children}</div>;
 };
 
-NoDataComponent.displayName = 'template-nodata';
+NoDataComponent.displayName = 'AmTableNoData';
 
-export const TableComponentList = {
-  AmTable: TableComponent,
-  'template-nodata': NoDataComponent,
-};
