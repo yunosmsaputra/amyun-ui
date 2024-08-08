@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ITable } from './Table.types';
 import Text from '../Text/Text';
 import Flex from '../Flex/Flex';
@@ -6,17 +6,28 @@ import Icon from '../Icon/Icon';
 import '../index.css';
 import { TableContainer } from './Table.styles';
 
-const TableComponent: React.FC<ITable> = ({
+export const TableComponent: React.FC<ITable> = ({
   column,
   style,
   columnSort,
   data,
   className,
+  children,
 }) => {
   const [sort, setSort] = useState<any>({
     key: '',
     type: 'asc',
   });
+  const noDataRef = useRef<HTMLDivElement>();
+
+  useEffect(() => {
+    if (noDataRef.current && typeof children === 'string') {
+      const htmlString = children
+        .split('<template-nodata>\n')[1]
+        .split('\n</template-nodata>')[0];
+      noDataRef.current.innerHTML = htmlString;
+    }
+  }, [children]);
 
   const onSort = (value: any) => {
     if (value.sort) {
@@ -36,8 +47,6 @@ const TableComponent: React.FC<ITable> = ({
     }
   };
 
-  // @ts-ignore
-  // @ts-ignore
   return (
     <TableContainer className={className}>
       <table>
@@ -76,16 +85,18 @@ const TableComponent: React.FC<ITable> = ({
             //@ts-ignore
             data?.length > 0 ? (
               data?.map((value, index) => (
-                <tr>
+                <tr key={`index-row-${index}`}>
                   {column?.map((val, idx) => (
-                    <td>{val.render ? val.render() : value[val.key]}</td>
+                    <td key={`index-column-${idx}`}>
+                      {val.render ? val.render() : value[val.key]}
+                    </td>
                   ))}
                 </tr>
               ))
             ) : (
               <tr>
                 <td colSpan={column?.length} className={'no-data'}>
-                  No Data to be displayed
+                  {children ? children : 'No Data to displayed'}
                 </td>
               </tr>
             )
@@ -97,4 +108,16 @@ const TableComponent: React.FC<ITable> = ({
 };
 
 TableComponent.displayName = 'AmTable';
-export default TableComponent;
+
+export const NoDataComponent: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
+  return <div>{children}</div>;
+};
+
+NoDataComponent.displayName = 'template-nodata';
+
+export const TableComponentList = {
+  AmTable: TableComponent,
+  'template-nodata': NoDataComponent,
+};
