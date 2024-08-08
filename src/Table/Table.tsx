@@ -13,6 +13,7 @@ export const TableComponent: React.FC<ITable> = ({
   data,
   className,
   children,
+    isStickyColumn
 }) => {
   const [sort, setSort] = useState<any>({
     key: '',
@@ -56,7 +57,7 @@ export const TableComponent: React.FC<ITable> = ({
               <th
                 key={`index${index}`}
                 onClick={() => onSort(value)}
-                style={{ width: value.width ? `${value.width}px` : 'auto' }}
+                style={isStickyColumn ? {minWidth: value.width ? value.width : 0, position: value.sticky ? 'sticky' : 'unset', left: value.left ? value.left : 'unset', right: value.right ? value.right : 'unset'} : { width: value.width ? `${value.width}px` : 'auto' }}
               >
                 <Flex
                   justifyContent={'space-between'}
@@ -87,7 +88,7 @@ export const TableComponent: React.FC<ITable> = ({
               data?.map((value, index) => (
                 <tr key={`index-row-${index}`}>
                   {column?.map((val, idx) => (
-                    <td key={`index-column-${idx}`}>
+                    <td key={`index-column-${idx}`} style={{position: val.sticky ? 'sticky' : 'unset', left: val.left ? val.left : 'unset', right: val.right ? val.right : 'unset'}}>
                       {val.render ? val.render() : value[val.key]}
                     </td>
                   ))}

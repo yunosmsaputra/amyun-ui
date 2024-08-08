@@ -15,6 +15,7 @@ export const TableContainer = styled.div<{
       padding: 16px 12px;
       text-transform: capitalize;
       border-bottom: 2px solid #f0f3f7;
+      background: #FFFFFF;
       & .th-cell-text {
         &:hover {
           cursor: pointer;
@@ -31,6 +32,7 @@ export const TableContainer = styled.div<{
           padding: 12px;
           font-size: 12px;
           color: #333;
+          background: #FFFFFF;
           &.no-data {
             font-size: 14px;
             font-width: 600;

@@ -5,5 +5,6 @@ export interface ITable extends React.PropsWithChildren {
   style?: React.CSSProperties;
   columnSort?: (key: string, type: string) => void;
   data?: any[];
+  isStickyColumn?: boolean;
   className?: string;
 }

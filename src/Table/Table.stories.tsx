@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TableComponent, NoDataComponent } from './Table';
 import React from 'react';
 import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
 import Text from '../Text/Text';
 
 const meta = {
@@ -32,6 +31,11 @@ const meta = {
     children: {
       table: { disable: true },
     },
+    isStickyColumn: {
+      name: 'Sticky Column',
+      description: 'To make 1 or more column sticky, can be furthest to the left or right or both<br/>Use <b>sticky: true</b> to the column that want to be sticky and set <b>left / right position</b><br/>All Column must have <b>width</b> property',
+      control: 'boolean'
+    }
   },
 } satisfies Meta<typeof TableComponent>;
 
@@ -146,5 +150,75 @@ export const EmptyData: Story = {
         </Text>
       </NoDataComponent>
     ),
+  },
+};
+
+export const StickyColumn: Story = {
+  args: {
+    isStickyColumn: true,
+    column: [
+      {
+        title: 'Code',
+        key: 'code',
+        sort: true,
+        width: 200,
+        sticky: true,
+        left: '0px'
+      },
+      {
+        title: 'Name',
+        key: 'name',
+        sort: true,
+        width: 200,
+      },
+      {
+        title: 'description',
+        key: 'description',
+        sort: false,
+        width: 200,
+      },
+      {
+        title: '',
+        key: '',
+        sort: false,
+        width: 52,
+        render: () => {
+          return (
+              <Button
+                  btnIcon="ic-three-dots"
+                  color="light-grey"
+                  iconColor="#9C9C9C"
+                  iconSize={12}
+                  onClick={() => {}}
+                  variant="solid"
+              />
+          );
+        },
+        sticky: true,
+        right: '0px'
+      },
+    ],
+    data: [
+      {
+        code: 'DT0001',
+        name: 'Data 0001',
+        description: 'Description for data 0001',
+      },
+      {
+        code: 'DT0002',
+        name: 'Data 0002',
+        description: 'Description for data 0002',
+      },
+      {
+        code: 'DT0003',
+        name: 'Data 0003',
+        description: 'Description for data 0003',
+      },
+      {
+        code: 'DT0004',
+        name: 'Data 0004',
+        description: 'Description for data 0004',
+      },
+    ],
   },
 };
