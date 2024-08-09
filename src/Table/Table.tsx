@@ -120,7 +120,6 @@ export const TableComponent: React.FC<ITable> = ({
           }
         </tbody>
       </table>
-      {pagination ? { children } : <></>}
     </TableContainer>
   );
 };
