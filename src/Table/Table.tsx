@@ -8,12 +8,12 @@ import { TableContainer } from './Table.styles';
 
 export const TableComponent: React.FC<ITable> = ({
   column,
-  style,
   columnSort,
   data,
   className,
   children,
   isStickyColumn,
+  pagination,
 }) => {
   const [sort, setSort] = useState<any>({
     key: '',
@@ -120,6 +120,7 @@ export const TableComponent: React.FC<ITable> = ({
           }
         </tbody>
       </table>
+      {pagination ? { children } : <></>}
     </TableContainer>
   );
 };
@@ -133,3 +134,11 @@ export const NoDataComponent: React.FC<React.PropsWithChildren> = ({
 };
 
 NoDataComponent.displayName = 'AmTableNoData';
+
+export const WithPagination: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
+  return <>{children}</>;
+};
+
+WithPagination.displayName = 'AmTablePagination';

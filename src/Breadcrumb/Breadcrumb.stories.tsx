@@ -31,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     nodes: ['Dashboard', 'Detail'],
-    icon: 'ic-arrow-right',
+    icon: 'ic-arrow',
     active: 'Detail',
   },
 };

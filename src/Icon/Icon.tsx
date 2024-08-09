@@ -89,7 +89,7 @@ const IconComponent: React.FC<IIcon> = ({
             fill={color}
           />
         </svg>
-      ) : name === 'ic-arrow-right' ? (
+      ) : name === 'ic-arrow' ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={size}

@@ -24,7 +24,7 @@ const meta = {
         'ic-sort-default',
         'ic-sort-ascending',
         'ic-sort-descending',
-        'ic-arrow-right',
+        'ic-arrow',
         'ic-ion-apps',
         'ic-three-dots',
       ],
