@@ -7,5 +7,7 @@ export interface ITable extends React.PropsWithChildren {
   data?: any[];
   isStickyColumn?: boolean;
   className?: string;
-  pagination?: boolean;
+  onClickRow?: (row: any) => void;
+  fixedHeader?: boolean;
+  tableHeight?: number;
 }
