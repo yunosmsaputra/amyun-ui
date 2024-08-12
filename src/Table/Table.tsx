@@ -23,15 +23,6 @@ export const TableComponent: React.FC<ITable> = ({
   });
   const noDataRef = useRef<HTMLDivElement>();
 
-  useEffect(() => {
-    if (noDataRef.current && typeof children === 'string') {
-      const htmlString = children
-        .split('<template-nodata>\n')[1]
-        .split('\n</template-nodata>')[0];
-      noDataRef.current.innerHTML = htmlString;
-    }
-  }, [children]);
-
   const onSort = (value: any) => {
     if (value.sort) {
       const oldVal = {
@@ -118,7 +109,7 @@ export const TableComponent: React.FC<ITable> = ({
                         right: val.right ? val.right : 'unset',
                       }}
                     >
-                      {val.render ? val.render() : value[val.key]}
+                      {val.render ? val.render(value[val.key]) : value[val.key]}
                     </td>
                   ))}
                 </tr>
@@ -126,7 +117,7 @@ export const TableComponent: React.FC<ITable> = ({
             ) : (
               <tr>
                 <td colSpan={column?.length} className={'no-data'}>
-                  {children ? children : 'No Data to displayed'}
+                  No Data to displayed
                 </td>
               </tr>
             )
@@ -138,6 +129,7 @@ export const TableComponent: React.FC<ITable> = ({
 };
 
 TableComponent.displayName = 'AmTable';
+export default TableComponent;
 
 export const NoDataComponent: React.FC<React.PropsWithChildren> = ({
   children,

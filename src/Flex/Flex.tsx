@@ -8,6 +8,7 @@ const FlexComponent: React.FC<IFlex> = ({
   gap,
   children,
   className,
+    style
 }) => {
   return (
     <FlexStyles
@@ -15,6 +16,7 @@ const FlexComponent: React.FC<IFlex> = ({
       $align={alignItems}
       $gap={gap}
       className={className}
+      style={style}
     >
       {React.Children.toArray(children)}
     </FlexStyles>

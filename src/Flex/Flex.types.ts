@@ -5,4 +5,5 @@ export interface IFlex extends React.PropsWithChildren {
   alignItems?: string;
   gap?: number;
   className?: string;
+  style?: React.CSSProperties;
 }

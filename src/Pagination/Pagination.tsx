@@ -25,7 +25,7 @@ const PaginationComponent: React.FC<PaginationTypes> = ({
       activePage: props.activePage + 1,
     }));
     // @ts-ignore
-    onChange && onChange(pagination.activePage);
+    onChange && onChange(pagination.activePage + 1);
   };
   const onPrev = () => {
     setPagination((props) => ({
@@ -34,7 +34,7 @@ const PaginationComponent: React.FC<PaginationTypes> = ({
       activePage: props.activePage - 1,
     }));
     // @ts-ignore
-    onChange && onChange(pagination.activePage);
+    onChange && onChange(pagination.activePage - 1);
   };
 
   const onClickPage = (val: any) => {

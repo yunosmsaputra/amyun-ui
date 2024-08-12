@@ -41,6 +41,15 @@ const meta = {
     onClickRow: {
       description: 'Get return of row data clicked',
     },
+    fixedHeader: {
+      name: 'Fixed Header',
+      description:
+        'To make table header sticky / fixed when scrolling<br/>Define table weight when use fixed header',
+    },
+    tableHeight: {
+      name: 'Table Height',
+      description: 'Set table height when use fixed header',
+    },
   },
 } satisfies Meta<typeof TableComponent>;
 
@@ -71,16 +80,19 @@ export const Default: Story = {
         key: '',
         sort: false,
         width: 52,
-        render: () => {
+        render: (val: any) => {
           return (
-            <Button
-              btnIcon="ic-three-dots"
-              color="light-grey"
-              iconColor="#9C9C9C"
-              iconSize={12}
-              onClick={() => {}}
-              variant="solid"
-            />
+            <>
+              <Text>{val}</Text>
+              <Button
+                btnIcon="ic-three-dots"
+                color="light-grey"
+                iconColor="#9C9C9C"
+                iconSize={12}
+                onClick={() => {}}
+                variant="solid"
+              />
+            </>
           );
         },
       },
