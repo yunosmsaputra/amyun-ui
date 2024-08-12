@@ -8,7 +8,7 @@ const FlexComponent: React.FC<IFlex> = ({
   gap,
   children,
   className,
-    style
+  style,
 }) => {
   return (
     <FlexStyles
