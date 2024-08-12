@@ -39,8 +39,8 @@ const meta = {
       control: 'boolean',
     },
     onClickRow: {
-      description: 'Get return of row data clicked'
-    }
+      description: 'Get return of row data clicked',
+    },
   },
 } satisfies Meta<typeof TableComponent>;
 
@@ -108,8 +108,8 @@ export const Default: Story = {
       },
     ],
     onClickRow: (value) => {
-      console.log(value)
-    }
+      console.log(value);
+    },
   },
 };
 
@@ -192,14 +192,14 @@ export const StickyColumn: Story = {
         width: 52,
         render: () => {
           return (
-              <Button
-                  btnIcon="ic-three-dots"
-                  color="light-grey"
-                  iconColor="#9C9C9C"
-                  iconSize={12}
-                  onClick={() => {}}
-                  variant="solid"
-              />
+            <Button
+              btnIcon="ic-three-dots"
+              color="light-grey"
+              iconColor="#9C9C9C"
+              iconSize={12}
+              onClick={() => {}}
+              variant="solid"
+            />
           );
         },
         sticky: true,
@@ -239,17 +239,17 @@ export const FixedHeader: Story = {
       {
         title: 'Code',
         key: 'code',
-        sort: true
+        sort: true,
       },
       {
         title: 'Name',
         key: 'name',
-        sort: true
+        sort: true,
       },
       {
         title: 'description',
         key: 'description',
-        sort: false
+        sort: false,
       },
       {
         title: '',
@@ -258,16 +258,16 @@ export const FixedHeader: Story = {
         width: 52,
         render: () => {
           return (
-              <Button
-                  btnIcon="ic-three-dots"
-                  color="light-grey"
-                  iconColor="#9C9C9C"
-                  iconSize={12}
-                  onClick={() => {}}
-                  variant="solid"
-              />
+            <Button
+              btnIcon="ic-three-dots"
+              color="light-grey"
+              iconColor="#9C9C9C"
+              iconSize={12}
+              onClick={() => {}}
+              variant="solid"
+            />
           );
-        }
+        },
       },
     ],
     data: [

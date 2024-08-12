@@ -14,9 +14,8 @@ export const TableComponent: React.FC<ITable> = ({
   children,
   isStickyColumn,
   onClickRow,
-    fixedHeader = false,
-    tableHeight = 500
-
+  fixedHeader = false,
+  tableHeight = 500,
 }) => {
   const [sort, setSort] = useState<any>({
     key: '',
@@ -52,11 +51,15 @@ export const TableComponent: React.FC<ITable> = ({
   };
 
   const handleClickRow = (value: any) => {
-    onClickRow && onClickRow(value)
-  }
+    onClickRow && onClickRow(value);
+  };
 
   return (
-    <TableContainer className={className} $fixedHeader={fixedHeader} $tableHeight={tableHeight}>
+    <TableContainer
+      className={className}
+      $fixedHeader={fixedHeader}
+      $tableHeight={tableHeight}
+    >
       <table>
         <thead>
           <tr>
@@ -102,7 +105,10 @@ export const TableComponent: React.FC<ITable> = ({
             //@ts-ignore
             data?.length > 0 ? (
               data?.map((value, index) => (
-                <tr key={`index-row-${index}`} onClick={() => handleClickRow(value)}>
+                <tr
+                  key={`index-row-${index}`}
+                  onClick={() => handleClickRow(value)}
+                >
                   {column?.map((val, idx) => (
                     <td
                       key={`index-column-${idx}`}
