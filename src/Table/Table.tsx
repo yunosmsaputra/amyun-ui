@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { ITable } from './Table.types';
 import Text from '../Text/Text';
 import Flex from '../Flex/Flex';
@@ -21,7 +21,6 @@ export const TableComponent: React.FC<ITable> = ({
     key: '',
     type: 'asc',
   });
-  const noDataRef = useRef<HTMLDivElement>();
 
   const onSort = (value: any) => {
     if (value.sort) {

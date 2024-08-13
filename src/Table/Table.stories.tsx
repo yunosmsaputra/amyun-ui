@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TableComponent, NoDataComponent, WithPagination } from './Table';
+import { TableComponent, NoDataComponent } from './Table';
 import React from 'react';
 import Button from '../Button/Button';
 import Text from '../Text/Text';
-import Pagination from '../Pagination/Pagination';
 
 const meta = {
   component: TableComponent,
