@@ -5,6 +5,7 @@ export { default as AmChip } from './Chip/Chip';
 export { default as AmFlex } from './Flex/Flex';
 export { default as AmIcon } from './Icon/Icon';
 export { default as AmPagination } from './Pagination/Pagination';
+export { default as AmSelectbox } from './SelectBox/SelectBox';
 export { default as AmSidebar } from './Sidebar/Sidebar';
 export {
   default as AmTable,
