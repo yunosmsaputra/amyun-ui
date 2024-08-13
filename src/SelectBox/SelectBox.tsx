@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   OptionBoxContainer,
   OptionBoxList,
@@ -12,6 +12,8 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   size = 'md',
   placeholder = 'Pilih salah satu',
   options = [],
+  position = 'bottom',
+  style,
   className,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -23,7 +25,7 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   };
 
   return (
-    <SelectBoxStyles className={className}>
+    <SelectBoxStyles className={className} style={style}>
       <SelectboxContainer
         $size={size}
         $open={isOpen}
@@ -39,7 +41,7 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
           </Text>
         )}
       </SelectboxContainer>
-      <OptionBoxContainer $size={size} $open={isOpen}>
+      <OptionBoxContainer $size={size} $open={isOpen} $position={position}>
         {options.length > 0 ? (
           options.map((value: any, index: number) => (
             <OptionBoxList

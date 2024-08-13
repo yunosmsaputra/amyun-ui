@@ -19,6 +19,14 @@ const meta = {
       description: 'List for option value',
       control: 'object',
     },
+    position: {
+      description: 'Position option value list',
+      control: 'radio',
+      options: ['top', 'bottom'],
+    },
+    style: {
+      table: { disable: true },
+    },
     className: {
       table: { disable: true },
     },
@@ -32,5 +40,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     options: ['Option 1', 'Option 2', 'Option 3'],
+    position: 'bottom',
   },
 };
