@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   OptionBoxContainer,
   OptionBoxList,
@@ -13,16 +13,21 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   placeholder = 'Pilih salah satu',
   options = [],
   position = 'bottom',
+  value = 'Option 1',
   style,
   className,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [value, setValue] = useState<string>('');
+  const [valueSelect, setValue] = useState<string>('');
 
   const handleChange = (val: string) => {
     setValue(val);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    setValue(value);
+  }, [value]);
 
   return (
     <SelectBoxStyles className={className} style={style}>
@@ -31,9 +36,9 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
         $open={isOpen}
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        {value ? (
+        {valueSelect ? (
           <Text color={'#333'} size={size === 'md' ? 14 : 12}>
-            {value}
+            {valueSelect}
           </Text>
         ) : (
           <Text color={'#9C9C9C'} size={size === 'md' ? 14 : 12}>
@@ -46,6 +51,7 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
           options.map((value: any, index: number) => (
             <OptionBoxList
               $size={size}
+              $active={value == valueSelect}
               onClick={() => {
                 handleChange(value);
               }}

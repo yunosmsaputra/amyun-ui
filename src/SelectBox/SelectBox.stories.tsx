@@ -24,6 +24,10 @@ const meta = {
       control: 'radio',
       options: ['top', 'bottom'],
     },
+    value: {
+      description: 'Default value',
+      control: 'text',
+    },
     style: {
       table: { disable: true },
     },
@@ -41,5 +45,6 @@ export const Default: Story = {
   args: {
     options: ['Option 1', 'Option 2', 'Option 3'],
     position: 'bottom',
+    value: 'Option 1',
   },
 };

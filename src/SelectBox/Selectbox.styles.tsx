@@ -51,17 +51,28 @@ export const OptionBoxContainer = styled.div<{
 export const OptionBoxList = styled.div<{
   $size: string;
   $nodata?: boolean;
+  $active?: boolean;
 }>`
   padding: 6px 12px;
-  color: ${(props) => (props.$nodata ? '#656565' : '#333')};
+  color: ${(props) =>
+    props.$nodata ? '#656565' : props.$active ? '#FFF' : '#333'};
   text-align: ${(props) => (props.$nodata ? 'center' : 'left')};
   font-size: ${(props) => (props.$size === 'md' ? 14 : 12)}px;
   border-top: 1px solid #e5e7e9;
+  background: ${(props) => (props.$active ? '#2671D9' : 'unset')};
+  font-weight: ${(props) => (props.$active ? '600' : 'normal')};
   &:hover {
-    background-color: #e9f1fb;
+    background-color: ${(props) => (props.$active ? '#2671D9' : '#e9f1fb')};
+    color: ${(props) => (props.$active ? '#FFF' : '#333')};
     cursor: pointer;
   }
   &:first-child {
     border: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  &:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 `;
