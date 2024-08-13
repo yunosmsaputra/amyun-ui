@@ -8,21 +8,21 @@ const meta = {
   argTypes: {
     size: {
       description: 'Size select box',
-      control: "radio",
-      options: ['sm', 'md']
+      control: 'radio',
+      options: ['sm', 'md'],
     },
     placeholder: {
       description: 'Placeholder for selectbox',
-      control: 'text'
+      control: 'text',
     },
     options: {
       description: 'List for option value',
-      control: 'object'
+      control: 'object',
     },
     className: {
-      table: {disable: true}
-    }
-  }
+      table: { disable: true },
+    },
+  },
 } satisfies Meta<typeof SelectBox>;
 
 export default meta;
@@ -31,6 +31,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    options: ['Option 1', 'Option 2', 'Option 3']
-  }
+    options: ['Option 1', 'Option 2', 'Option 3'],
+  },
 };
