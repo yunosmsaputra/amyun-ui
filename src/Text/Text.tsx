@@ -6,6 +6,7 @@ const TextComponent: React.FC<IText> = ({
   size,
   color,
   weight,
+  onClick,
   children,
   style,
   className,
@@ -17,6 +18,7 @@ const TextComponent: React.FC<IText> = ({
       $fontWeight={weight === 'semibold' ? '600' : weight}
       style={style}
       className={className}
+      onClick={onClick}
     >
       {children}
     </TextStyled>

@@ -1,14 +1,19 @@
 import React from 'react';
 
-export interface IButton {
-  label?: string;
+export interface IButton extends React.PropsWithChildren {
+  type?: string;
   color?: string;
-  variant?: string;
+  size?: string;
   prependIcon?: string;
   appendIcon?: string;
   iconSize?: number;
   iconColor?: string;
   btnIcon?: string;
+  disabled?: boolean;
+  popup?: boolean;
+  popupWidth?: number;
+  popupActionList?: any[];
+  popupPosition?: string;
   onClick?: () => void;
   style?: React.CSSProperties;
 }

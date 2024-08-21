@@ -31,6 +31,15 @@ const meta = {
       name: 'Flex Gap',
       control: 'number',
     },
+    onClick: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
+    style: {
+      table: { disable: true },
+    },
   },
 } satisfies Meta<typeof Flex>;
 

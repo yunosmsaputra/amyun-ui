@@ -14,6 +14,7 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   options = [],
   position = 'bottom',
   value = 'Option 1',
+  onChange,
   style,
   className,
 }) => {
@@ -23,6 +24,7 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   const handleChange = (val: string) => {
     setValue(val);
     setIsOpen(false);
+    onChange && onChange(val);
   };
 
   useEffect(() => {
@@ -51,7 +53,7 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
           options.map((value: any, index: number) => (
             <OptionBoxList
               $size={size}
-              $active={value == valueSelect}
+              $active={value === valueSelect}
               onClick={() => {
                 handleChange(value);
               }}

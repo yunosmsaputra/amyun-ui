@@ -82,14 +82,11 @@ export const Default: Story = {
         render: (val: any) => {
           return (
             <>
-              <Text>{val}</Text>
               <Button
-                btnIcon="ic-three-dots"
-                color="light-grey"
+                btnIcon="three-dot"
                 iconColor="#9C9C9C"
                 iconSize={12}
                 onClick={() => {}}
-                variant="solid"
               />
             </>
           );
@@ -150,12 +147,10 @@ export const EmptyData: Story = {
         render: () => {
           return (
             <Button
-              btnIcon="ic-three-dots"
-              color="light-grey"
+              btnIcon="three-dot"
               iconColor="#9C9C9C"
               iconSize={12}
               onClick={() => {}}
-              variant="solid"
             />
           );
         },
@@ -205,11 +200,9 @@ export const StickyColumn: Story = {
           return (
             <Button
               btnIcon="ic-three-dots"
-              color="light-grey"
               iconColor="#9C9C9C"
               iconSize={12}
               onClick={() => {}}
-              variant="solid"
             />
           );
         },
@@ -271,11 +264,9 @@ export const FixedHeader: Story = {
           return (
             <Button
               btnIcon="ic-three-dots"
-              color="light-grey"
               iconColor="#9C9C9C"
               iconSize={12}
               onClick={() => {}}
-              variant="solid"
             />
           );
         },

@@ -25,6 +25,9 @@ const meta = {
     style: {
       table: { disable: true },
     },
+    onClick: {
+      table: { disable: true },
+    },
   },
 } satisfies Meta<typeof Text>;
 

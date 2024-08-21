@@ -6,6 +6,7 @@ const FlexComponent: React.FC<IFlex> = ({
   justifyContent,
   alignItems,
   gap,
+  onClick,
   children,
   className,
   style,
@@ -17,6 +18,7 @@ const FlexComponent: React.FC<IFlex> = ({
       $gap={gap}
       className={className}
       style={style}
+      onClick={onClick}
     >
       {React.Children.toArray(children)}
     </FlexStyles>

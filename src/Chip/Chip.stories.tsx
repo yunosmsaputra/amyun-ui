@@ -1,11 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ChipComponent } from './index';
-import PropTypes from 'prop-types';
-
-ChipComponent.propTypes = {
-  type: PropTypes.oneOf(['primary', 'success', 'danger', 'warning']),
-};
 
 const meta = {
   title: 'Data Display/Chip',
@@ -14,9 +9,9 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
-    type: {
+    color: {
       control: 'radio',
-      options: ['primary', 'success', 'danger', 'warning'],
+      options: ['blue', 'green', 'orange', 'red'],
       description: 'Define for type of Chip',
     },
     size: {
@@ -25,6 +20,12 @@ const meta = {
       description: 'Size chips',
     },
     children: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
+    style: {
       table: { disable: true },
     },
   },
@@ -36,8 +37,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: 'primary',
+    color: 'blue',
     children: 'Status',
-    size: 'sm',
+    size: 'md',
   },
 };

@@ -1,6 +1,8 @@
 import React from 'react';
 
 export interface IChip extends React.PropsWithChildren {
-  type?: string;
+  color?: string;
   size?: string;
+  className?: string;
+  style?: React.CSSProperties;
 }
