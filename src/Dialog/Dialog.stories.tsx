@@ -45,7 +45,9 @@ export const Default: Story = {
         </AmText>
       </AmDialogContent>,
       <AmDialogActions>
-        <AmButton color={'primary'} variant={'solid'} label={'Simpan Data'} />
+        <AmButton color={'blue'} type={'fill'}>
+          Simpan
+        </AmButton>
       </AmDialogActions>,
     ],
     isShow: true,
@@ -67,7 +69,9 @@ export const Expandable: Story = {
         </AmText>
       </AmDialogContent>,
       <AmDialogActions>
-        <AmButton color={'primary'} variant={'solid'} label={'Simpan Data'} />
+        <AmButton color={'primary'} type={'fill'}>
+          Simpan Data
+        </AmButton>
       </AmDialogActions>,
     ],
     expandable: true,

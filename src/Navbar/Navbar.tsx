@@ -3,7 +3,7 @@ import { INavbar } from './Navbar.types';
 import { NavbarStyles } from './Navbar.styles';
 
 const NavbarComponent: React.FC<INavbar> = ({ children }) => {
-  return <NavbarStyles>{React.Children.toArray(children)}</NavbarStyles>;
+  return <NavbarStyles>{children}</NavbarStyles>;
 };
 
 NavbarComponent.displayName = 'AmSidebar';

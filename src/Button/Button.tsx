@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IButton } from './Button.types';
 import Icon from '../Icon/Icon';
 import {
@@ -32,11 +32,36 @@ const ButtonComponent: React.FC<IButton> = ({
     }
     onClick && onClick();
   };
+  const useClickOutside = (handler: any) => {
+    const domNode = useRef();
+
+    useEffect(() => {
+      const maybeHandler = (event: any) => {
+        // @ts-ignore
+        if (!domNode.current.contains(event.target)) {
+          handler();
+        }
+      };
+
+      document.addEventListener('mousedown', maybeHandler);
+
+      return () => {
+        document.removeEventListener('mousedown', maybeHandler);
+      };
+    });
+
+    return domNode;
+  };
+  const domNode = useClickOutside(() => {
+    setOnShowPopup(false);
+  });
   return (
     <ButtonContainer
       onClick={() => {
         handleClick();
       }}
+      // @ts-ignore
+      ref={domNode}
     >
       <ButtonStyles
         $type={type}
