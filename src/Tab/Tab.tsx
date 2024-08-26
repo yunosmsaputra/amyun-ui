@@ -1,5 +1,6 @@
 import {
   TabContent,
+  TabStyle,
   TabTitle,
   TabTitleList,
   TabTitleListActive,
@@ -15,14 +16,14 @@ import {
 
 const AmTab: React.FC<IAmTab> = ({ children = '', activeTab = 'Tab 1' }) => {
   return (
-    <>
+    <TabStyle>
       {React.Children.map(children, (child) => {
         return React.isValidElement(child)
           ? // @ts-ignore
             React.cloneElement(child, { activeTab })
           : child;
       })}
-    </>
+    </TabStyle>
   );
 };
 
@@ -42,12 +43,13 @@ export const AmTabTitle: React.FC<IAmTabTitle> = ({ children, activeTab }) => {
 export const AmTabTitleList: React.FC<IAmTabTitleList> = ({
   value,
   activeTab,
+  onClick,
   children,
 }) => {
   return activeTab === value ? (
     <TabTitleListActive>{children}</TabTitleListActive>
   ) : (
-    <TabTitleList>{children}</TabTitleList>
+    <TabTitleList onClick={onClick}>{children}</TabTitleList>
   );
 };
 

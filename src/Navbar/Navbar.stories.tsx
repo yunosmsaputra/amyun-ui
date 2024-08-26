@@ -12,6 +12,9 @@ const meta = {
     children: {
       table: { disable: true },
     },
+    style: {
+      table: { disable: true },
+    },
   },
 } satisfies Meta<typeof Navbar>;
 

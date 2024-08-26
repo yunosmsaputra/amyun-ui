@@ -8,6 +8,7 @@ export interface IAmTabTitle extends IAmTab {}
 
 export interface IAmTabTitleList extends IAmTab {
   value?: string;
+  onClick?: () => void;
 }
 
 export interface IAmTabContent extends IAmTab {}

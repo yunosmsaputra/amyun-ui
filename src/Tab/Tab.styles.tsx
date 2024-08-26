@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const TabStyle = styled.div`
+  width: 100%;
+`;
+
 export const TabTitle = styled.div`
   display: flex;
   gap: 6px;

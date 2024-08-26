@@ -31,6 +31,10 @@ const meta = {
       name: 'Flex Gap',
       control: 'number',
     },
+    wrap: {
+      control: 'boolean',
+      description: 'Control flex wrap',
+    },
     onClick: {
       table: { disable: true },
     },
