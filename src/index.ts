@@ -9,6 +9,10 @@ export {
   AmDialogContent,
   AmDialogActions,
 } from './Dialog/Dialog';
+export {
+  default as AmCounterCard,
+  AmCounterCardIcon,
+} from './CounterCard/CounterCard';
 export { default as AmFileInput } from './FileInput/FileInput';
 export { default as AmFlex } from './Flex/Flex';
 export { default as AmIcon } from './Icon/Icon';

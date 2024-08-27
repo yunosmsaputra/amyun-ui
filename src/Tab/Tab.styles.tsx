@@ -26,7 +26,7 @@ export const TabTitleList = styled.div`
       content: '';
       position: absolute;
       width: 100%;
-      height: 2px;
+      height: 3px;
       border-radius: 8px 8px 0 0;
       background: #2671d9;
       bottom: 0;
@@ -46,7 +46,7 @@ export const TabTitleListActive = styled.div`
     content: '';
     position: absolute;
     width: 100%;
-    height: 2px;
+    height: 3px;
     border-radius: 8px 8px 0 0;
     background: #2671d9;
     bottom: 0;

@@ -28,6 +28,14 @@ const meta = {
     onClick: {
       table: { disable: true },
     },
+    block: {
+      description: '<b>True</b> if want set width with 100%',
+    },
+    align: {
+      description: 'Text align',
+      control: 'radio',
+      options: ['left', 'center', 'right'],
+    },
   },
 } satisfies Meta<typeof Text>;
 

@@ -6,6 +6,8 @@ const TextComponent: React.FC<IText> = ({
   size,
   color,
   weight,
+  block = false,
+  align = 'left',
   onClick,
   children,
   style,
@@ -16,6 +18,8 @@ const TextComponent: React.FC<IText> = ({
       $size={size}
       $color={color}
       $fontWeight={weight === 'semibold' ? '600' : weight}
+      $block={block}
+      $align={align}
       style={style}
       className={className}
       onClick={onClick}

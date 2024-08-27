@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Box from './Box';
 
 const meta = {
-  title: 'Layout/Box',
+  title: 'Data Display/Box',
   component: Box,
   argTypes: {
     children: {

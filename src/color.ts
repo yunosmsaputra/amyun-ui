@@ -35,4 +35,5 @@ export const neutralColorLib = {
   textDisabled: '#7F7F80',
   background: '#F6F7FD',
   divider: '#F0F3F7',
+  label: '#4D5E80',
 };
