@@ -46,5 +46,6 @@ export const Default: Story = {
     options: ['Option 1', 'Option 2', 'Option 3'],
     position: 'bottom',
     value: 'Option 1',
+    size: 'sm',
   },
 };

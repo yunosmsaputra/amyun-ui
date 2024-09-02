@@ -5,12 +5,7 @@ export const ChipStyles = styled.div<{
   $color: string;
   additionalClass?: string;
 }>`
-  padding: ${(props) =>
-    props.$size === 'sm'
-      ? '4px 6px'
-      : props.$size === 'md'
-        ? '8px 12px'
-        : '8px 16px'};
+  padding: ${(props) => (props.$size === 'sm' ? '4px 8px' : '4px 10px')};
   background: ${(props) =>
     props.$color === 'blue'
       ? '#E9F1FB'
@@ -42,11 +37,11 @@ export const ChipStyles = styled.div<{
           : props.$color === 'red'
             ? '#FF5656'
             : '#333'};
-  font-size: ${(props) =>
-    props.$size === 'sm' ? '10px' : props.$size === 'md' ? '12px' : '14px'};
+  font-size: ${(props) => (props.$size === 'sm' ? '10px' : '12px')};
   border-radius: 100px;
   font-weight: 600;
-  line-height: ${(props) =>
-    props.$size === 'sm' ? '12px' : props.$size === 'md' ? '14px' : '16px'};
+  line-height: ${(props) => (props.$size === 'sm' ? '12px' : '16px')};
   text-transform: capitalize;
+  display: inline-block;
+  text-align: center;
 `;

@@ -61,6 +61,8 @@ export const DialogContent = styled.div<{
     props.$expandable
       ? `calc(100vh - 184px)`
       : `calc(${props.$height}px - 160px)`};
+  min-height: ${(props) =>
+    props.$expandable ? `calc(100vh - 184px)` : `auto`};
   overflow-y: auto;
 `;
 

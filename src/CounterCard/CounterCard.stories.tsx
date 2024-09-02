@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import CounterCard, { AmCounterCardIcon } from './CounterCard';
-import { AmFlex, AmIcon, AmText } from '../index';
+import { AmFlex, AmText } from '../index';
 import React from 'react';
 import { blueColorLib, neutralColorLib } from '../color';
 
@@ -26,11 +26,13 @@ export const Default: Story = {
     children: [
       <AmFlex justifyContent={'space-between'} alignItems={'center'}>
         <AmCounterCardIcon color={'blue'}>
-          <AmIcon color={'#2671D9'} size={14} name={'check'} />
+          <AmText size={12} weight={'semibold'} color={blueColorLib.main}>
+            TD
+          </AmText>
         </AmCounterCardIcon>
         <AmFlex wrap>
           <AmText block size={12} color={neutralColorLib.label} align={'right'}>
-            Meter Data
+            Total Data
           </AmText>
           <AmText
             block

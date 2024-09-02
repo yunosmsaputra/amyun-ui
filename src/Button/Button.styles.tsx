@@ -194,6 +194,7 @@ export const ButtonPopup = styled.div<{
   left: ${(props) => (props.$position === 'left' ? 0 : 'unset')};
   right: ${(props) => (props.$position === 'left' ? 0 : 'unset')};
   width: ${(props) => (props.$width ? `${props.$width}px` : '100%')};
+  z-index: 10;
 `;
 
 export const ButtonPopupList = styled.div`

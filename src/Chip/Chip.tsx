@@ -4,7 +4,7 @@ import { ChipStyles } from './Chip.styles';
 
 const ChipComponent: React.FC<IChip> = ({
   color = 'blue',
-  size = 'md',
+  size = 'sm',
   className,
   style,
   children,

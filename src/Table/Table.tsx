@@ -16,6 +16,7 @@ export const TableComponent: React.FC<ITable> = ({
   onClickRow,
   fixedHeader = false,
   tableHeight = 500,
+  style,
 }) => {
   const [sort, setSort] = useState<any>({
     key: '',
@@ -49,6 +50,7 @@ export const TableComponent: React.FC<ITable> = ({
       className={className}
       $fixedHeader={fixedHeader}
       $tableHeight={tableHeight}
+      style={style}
     >
       <table>
         <thead>

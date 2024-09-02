@@ -5,7 +5,7 @@ import {
   IconDelete,
   IconEye,
 } from './FileInput.style';
-import { AmFlex, AmIcon, AmText } from '../index';
+import { AmFlex, AmText } from '../index';
 import { neutralColorLib } from '../color';
 import { IFileInput } from './FileInput.types';
 

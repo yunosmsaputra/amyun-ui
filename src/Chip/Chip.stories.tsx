@@ -16,7 +16,7 @@ const meta = {
     },
     size: {
       control: 'radio',
-      options: ['sm', 'md', 'lg'],
+      options: ['sm', 'md'],
       description: 'Size chips',
     },
     children: {

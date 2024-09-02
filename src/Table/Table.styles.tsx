@@ -31,6 +31,9 @@ export const TableContainer = styled.div<{
         &:first-child {
           border-top-left-radius: 8px;
         }
+        &:last-child {
+          border-top-right-radius: 8px;
+        }
       }
     }
     tbody {

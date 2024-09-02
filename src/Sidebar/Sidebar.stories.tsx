@@ -1,11 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Sidebar, { AmSidebarAppIcon, AmSidebarMenu } from './Sidebar';
-import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import React from 'react';
-import Avatar from '../Avatar/Avatar';
-import Flex from '../Flex/Flex';
-import Text from '../Text/Text';
 
 const meta = {
   title: 'Layout/Sidebar',

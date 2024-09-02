@@ -35,7 +35,6 @@ export const CounterCardStyles = styled.div<{
 export const CounterCardIcon = styled.div<{
   $color?: string;
 }>`
-  padding: 12px;
   background-color: ${(props) =>
     props.$color === 'blue'
       ? blueColorLib.surface
@@ -45,4 +44,9 @@ export const CounterCardIcon = styled.div<{
           ? redColorLib.surface
           : neutralColorLib.background};
   border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

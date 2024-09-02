@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   OptionBoxContainer,
   OptionBoxList,
@@ -31,19 +31,48 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
     setValue(value);
   }, [value]);
 
+  const useClickOutside = (handler: any) => {
+    const domNode = useRef();
+
+    useEffect(() => {
+      const maybeHandler = (event: any) => {
+        // @ts-ignore
+        if (!domNode.current.contains(event.target)) {
+          handler();
+        }
+      };
+
+      document.addEventListener('mousedown', maybeHandler);
+
+      return () => {
+        document.removeEventListener('mousedown', maybeHandler);
+      };
+    });
+
+    return domNode;
+  };
+  const domNode = useClickOutside(() => {
+    setIsOpen(false);
+  });
+
   return (
-    <SelectBoxStyles className={className} style={style}>
+    <SelectBoxStyles
+      className={className}
+      style={style}
+      // @ts-ignore
+      ref={domNode}
+    >
       <SelectboxContainer
         $size={size}
         $open={isOpen}
         onClick={() => setIsOpen((prev) => !prev)}
       >
         {valueSelect ? (
-          <Text color={'#333'} size={size === 'md' ? 14 : 12}>
+          <Text color={'#333'} size={12}>
             {valueSelect}
           </Text>
         ) : (
-          <Text color={'#9C9C9C'} size={size === 'md' ? 14 : 12}>
+          <Text color={'#9C9C9C'} size={12}>
             {placeholder}
           </Text>
         )}
