@@ -4,11 +4,15 @@ import { ITextbox } from './Textbox.types';
 
 const TextBoxComponent: React.FC<ITextbox> = ({
   placeholder = 'Masukkan text',
+  onChange,
   style,
 }) => {
   return (
     <TextboxContainer style={style}>
-      <TextboxStyle placeholder={placeholder}></TextboxStyle>
+      <TextboxStyle
+        placeholder={placeholder}
+        onChange={onChange}
+      ></TextboxStyle>
     </TextboxContainer>
   );
 };

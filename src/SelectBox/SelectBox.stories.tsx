@@ -16,7 +16,8 @@ const meta = {
       control: 'text',
     },
     options: {
-      description: 'List for option value',
+      description:
+        'List for option value, you can use string of array / object of array',
       control: 'object',
     },
     position: {
@@ -27,6 +28,10 @@ const meta = {
     value: {
       description: 'Default value',
       control: 'text',
+    },
+    text: {
+      description:
+        'To define text display in options list, use it if options are <b>Object</b>',
     },
     style: {
       table: { disable: true },
@@ -47,5 +52,18 @@ export const Default: Story = {
     position: 'bottom',
     value: 'Option 1',
     size: 'sm',
+  },
+};
+
+export const OptionsObject: Story = {
+  args: {
+    options: [
+      { value: 'Option1', text: 'Option 1' },
+      { value: 'Option2', text: 'Option 2' },
+    ],
+    position: 'bottom',
+    value: 'Option 1',
+    text: 'text',
+    size: 'md',
   },
 };

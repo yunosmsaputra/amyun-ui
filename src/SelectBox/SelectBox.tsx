@@ -13,15 +13,16 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   placeholder = 'Pilih salah satu',
   options = [],
   position = 'bottom',
-  value = 'Option 1',
+  value = '',
+  text,
   onChange,
   style,
   className,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [valueSelect, setValue] = useState<string>('');
+  const [valueSelect, setValue] = useState<any>();
 
-  const handleChange = (val: string) => {
+  const handleChange = (val: any) => {
     setValue(val);
     setIsOpen(false);
     onChange && onChange(val);
@@ -69,7 +70,10 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
       >
         {valueSelect ? (
           <Text color={'#333'} size={12}>
-            {valueSelect}
+            {typeof valueSelect === 'object'
+              ? //@ts-ignore
+                valueSelect[text]
+              : valueSelect}
           </Text>
         ) : (
           <Text color={'#9C9C9C'} size={12}>
@@ -88,7 +92,10 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
               }}
               key={`option${index}`}
             >
-              {value}
+              {typeof value === 'object'
+                ? //@ts-ignore
+                  value[text]
+                : value}
             </OptionBoxList>
           ))
         ) : (

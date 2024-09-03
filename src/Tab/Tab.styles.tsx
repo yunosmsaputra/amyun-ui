@@ -55,5 +55,5 @@ export const TabTitleListActive = styled.div`
 `;
 
 export const TabContent = styled.div`
-  padding: 10px 18px 0 16px;
+  padding: 12px 12px 32px 12px;
 `;

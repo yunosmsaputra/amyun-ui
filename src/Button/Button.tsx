@@ -71,7 +71,6 @@ const ButtonComponent: React.FC<IButton> = ({
         $prependIcon={prependIcon ? true : false}
         $btnIcon={btnIcon}
         style={style}
-        onClick={onClick}
         disabled={disabled}
       >
         {prependIcon && (
