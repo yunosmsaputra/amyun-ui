@@ -36,4 +36,5 @@ export {
   NoDataComponent as AmTableNoData,
 } from './Table/Table';
 export { default as AmText } from './Text/Text';
+export { default as AmTextarea } from './Textarea/Textarea';
 export { default as AmTextbox } from './Textbox/Textbox';

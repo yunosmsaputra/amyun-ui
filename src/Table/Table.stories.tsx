@@ -63,22 +63,26 @@ export const Default: Story = {
         title: 'Code',
         key: 'code',
         sort: true,
+        clickRow: true,
       },
       {
         title: 'Name',
         key: 'name',
         sort: true,
+        clickRow: true,
       },
       {
         title: 'description',
         key: 'description',
         sort: false,
+        clickRow: true,
       },
       {
         title: '',
         key: '',
         sort: false,
         width: 52,
+        clickRow: false,
         render: (val: any) => {
           return (
             <>

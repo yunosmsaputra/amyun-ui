@@ -63,7 +63,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    size: 14,
+    size: 20,
     color: '#2671D9',
     name: 'plus',
   },

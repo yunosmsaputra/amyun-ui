@@ -81,7 +81,7 @@ export const TableComponent: React.FC<ITable> = ({
                   {value.sort ? (
                     <Icon
                       color="#333"
-                      name={`${value.key === sort.key ? (sort.type === 'asc' ? 'ic-sort-ascending' : 'ic-sort-descending') : 'ic-sort-default'}`}
+                      name={`${value.key === sort.key ? (sort.type === 'asc' ? 'sorting-ascend' : 'sorting-descend') : 'sort-inactive'}`}
                       size={14}
                     ></Icon>
                   ) : (
@@ -97,10 +97,7 @@ export const TableComponent: React.FC<ITable> = ({
             //@ts-ignore
             data?.length > 0 ? (
               data?.map((value, index) => (
-                <tr
-                  key={`index-row-${index}`}
-                  onClick={() => handleClickRow(value)}
-                >
+                <tr key={`index-row-${index}`}>
                   {column?.map((val, idx) => (
                     <td
                       key={`index-column-${idx}`}
@@ -108,6 +105,9 @@ export const TableComponent: React.FC<ITable> = ({
                         position: val.sticky ? 'sticky' : 'unset',
                         left: val.left ? val.left : 'unset',
                         right: val.right ? val.right : 'unset',
+                      }}
+                      onClick={() => {
+                        val.clickRow && handleClickRow(value);
                       }}
                     >
                       {val.render ? val.render(value[val.key]) : value[val.key]}

@@ -1,6 +1,7 @@
 import React from 'react';
 
-export interface ITextbox {
+export interface ITextarea {
+  row?: number;
   placeholder?: string;
   value?: string;
   name?: string;

@@ -10,7 +10,7 @@ export const TextboxStyle = styled.input`
   box-sizing: border-box;
   border: 1px solid #e5e7e9;
   padding: 8px 10px 8px 12px;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 12px;
   line-height: 16px;
   color: #333;
