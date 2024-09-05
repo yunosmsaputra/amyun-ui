@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   ISidebar,
   ISidebarAppIcon,
@@ -13,7 +13,6 @@ import {
   SidebarMenuText,
   SidebarStyles,
 } from './Sidebar.styles';
-import { AmIcon, AmText } from '../index';
 
 const SidebarComponent: React.FC<ISidebar> = ({
   children,
@@ -37,8 +36,9 @@ const SidebarComponent: React.FC<ISidebar> = ({
     >
       {React.Children.map(children, (child) => {
         return React.isValidElement(child)
-          ? // @ts-ignore
+          ?
             React.cloneElement(child, {
+              // @ts-ignore
               activeMenu,
               logoMini,
               logoMain,

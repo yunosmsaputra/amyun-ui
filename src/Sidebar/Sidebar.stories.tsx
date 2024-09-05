@@ -7,8 +7,6 @@ import Sidebar, {
   AmSideBarMenuText,
 } from './Sidebar';
 import React from 'react';
-import { AmIcon, AmText } from '../index';
-import { neutralColorLib } from '../color';
 
 const meta = {
   title: 'Layout/Sidebar',
