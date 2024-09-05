@@ -3,21 +3,36 @@ import { blueColorLib, neutralColorLib } from '../color';
 
 export const SidebarStyles = styled.div`
   background: #fff;
-  padding: 24px 24px 24px 16px;
-  width: 336px;
+  padding: 24px 16px;
+  width: 80px;
   height: 100vh;
-  box-shadow: 2px 0px 25px 0px rgba(0, 67, 101, 0.1);
   border-right: 1px solid ${neutralColorLib.disbled};
+  transition: width 0.5s ease-in;
+  &:hover {
+    width: 336px;
+    padding: 24px 24px 24px 16px;
+    box-shadow: 2px 0px 25px 0px rgba(0, 67, 101, 0.1);
+  }
 `;
 
-export const SidebarAppIcon = styled.div`
+export const SidebarAppIcon = styled.div<{
+  $onMenuHover?: boolean;
+}>`
+  width: ${(props) => (props.$onMenuHover ? '296px' : '32px')};
+  display: flex;
+  justify-content: ${(props) => (props.$onMenuHover ? 'flex-start' : 'center')};
+  height: 46px;
+  width: 100%;
   margin-bottom: 40px;
 `;
 
 export const SidebarMenu = styled.div<{
   $isActive?: boolean;
+  $onMenuHover?: boolean;
 }>`
-  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  padding: ${(props) => (props.$onMenuHover ? '12px 16px' : '12px')};
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
@@ -26,6 +41,9 @@ export const SidebarMenu = styled.div<{
   background: ${(props) =>
     props.$isActive ? blueColorLib.surface : neutralColorLib.white};
   border-radius: 8px;
+  div:last-child {
+    display: ${(props) => (props.$onMenuHover ? 'block' : 'none')};
+  }
   &:hover {
     background: #e9f1fb;
     color: ${blueColorLib.main};
@@ -35,3 +53,11 @@ export const SidebarMenu = styled.div<{
     margin-top: 0;
   }
 `;
+
+export const SidebarMenuText = styled.div`
+  margin-left: 12px;
+  font-size: 12px;
+  font-weight: 600;
+`;
+
+export const SidebarMenuIcon = styled.div``;
