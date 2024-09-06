@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface ISidebar extends React.PropsWithChildren {
   activeMenu?: string;
+  activeMenuChild?: string;
   style?: React.CSSProperties;
 }
 
@@ -16,6 +17,7 @@ export interface ISidebarMenu extends ISidebarAppIcon {
   menuIndex?: string;
   onMenuItemHover?: boolean;
   onClick?: () => void;
+  openChild?: boolean;
 }
 
 export interface ISidebarMenuIcon extends ISidebarMenu {
@@ -24,7 +26,5 @@ export interface ISidebarMenuIcon extends ISidebarMenu {
 export interface ISidebarMenuIconState extends React.PropsWithChildren {}
 export interface ISidebarMenuText extends ISidebarMenuIcon {}
 
-export interface ISideBarMenuChild extends React.PropsWithChildren {}
-export interface ISideBarMenuChildItem extends React.PropsWithChildren {
-  onClick?: () => void;
-}
+export interface ISideBarMenuChild extends ISidebarMenu {}
+export interface ISideBarMenuChildItem extends ISidebarMenu {}

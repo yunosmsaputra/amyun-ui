@@ -26,6 +26,7 @@ import {
 const SidebarComponent: React.FC<ISidebar> = ({
   children,
   activeMenu,
+  activeMenuChild,
   style,
 }) => {
   const [onMenuHover, setOnMenuHover] = useState<boolean>(false);
@@ -46,6 +47,7 @@ const SidebarComponent: React.FC<ISidebar> = ({
           ? React.cloneElement(child, {
               // @ts-ignore
               activeMenu,
+              activeMenuChild,
               onMenuHover,
             })
           : child;
@@ -66,8 +68,8 @@ export const AmSidebarAppIcon: React.FC<ISidebarAppIcon> = ({
     <SidebarAppIcon $onMenuHover={onMenuHover}>
       {childrenArray.map((child, index) => {
         const childElement = child as React.ReactElement;
-        // @ts-ignore
         const displayName =
+          // @ts-ignore
           childElement.type.displayName || childElement.type.name || 'Unknown';
         if (onMenuHover) {
           if (displayName === 'AmSideBarAppIconMain') {
@@ -101,9 +103,11 @@ export const AmSidebarMenu: React.FC<ISidebarMenu> = ({
   activeMenu,
   onMenuHover,
   onClick,
+  activeMenuChild,
 }) => {
   const [onMenuItemHover, setOnMenuItemHover] = useState<boolean>(false);
   const [isActiveMenu, setOnIsActiveMenu] = useState<boolean>(false);
+  const [openChild, setOpenChild] = useState<boolean>(false);
   const childrenArray = React.Children.toArray(children);
   const onMouseEnter = () => {
     setOnMenuItemHover(true);
@@ -114,17 +118,46 @@ export const AmSidebarMenu: React.FC<ISidebarMenu> = ({
   useEffect(() => {
     if (activeMenu?.toLowerCase() === menuIndex?.toLowerCase()) {
       setOnIsActiveMenu(true);
+      const childrenArray = React.Children.toArray(children);
+      // @ts-ignore
+      const haveChild = childrenArray.some(
+        (child) =>
+          child.type.displayName === 'AmSideBarMenuChild' ||
+          child.type.name === 'AmSideBarMenuChild',
+      );
+      if (haveChild) {
+        setOpenChild(true);
+      } else {
+        setOpenChild(false);
+      }
     } else {
       setOnIsActiveMenu(false);
+      setOpenChild(false);
     }
   }, [activeMenu]);
+  const handleClick = () => {
+    const childrenArray = React.Children.toArray(children);
+    // @ts-ignore
+    const haveChild = childrenArray.some(
+      (child) =>
+        child.type.displayName === 'AmSideBarMenuChild' ||
+        child.type.name === 'AmSideBarMenuChild',
+    );
+    if (haveChild) {
+      setOpenChild(!openChild);
+    } else {
+      onClick && onClick();
+    }
+  };
   return (
     <SidebarMenu
       $isActive={activeMenu?.toLowerCase() === menuIndex?.toLowerCase()}
       $onMenuHover={onMenuHover}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onClick={onClick}
+      onClick={() => {
+        handleClick();
+      }}
     >
       {React.Children.map(children, (child) => {
         const childElement = child as React.ReactElement;
@@ -138,6 +171,8 @@ export const AmSidebarMenu: React.FC<ISidebarMenu> = ({
                 onMenuHover,
                 onMenuItemHover,
                 isActiveMenu,
+                activeMenuChild,
+                openChild,
               })
             : displayName === 'AmSideBarMenuIcon' &&
               React.cloneElement(child, {
@@ -210,23 +245,54 @@ export const AmSideBarMenuIconActive: React.FC<ISidebarMenuIconState> = ({
 export const AmSideBarMenuText: React.FC<ISidebarMenuText> = ({
   children,
   isActiveMenu,
+  onMenuHover,
 }) => {
-  return <SidebarMenuText $isActive={isActiveMenu}>{children}</SidebarMenuText>;
+  return (
+    <SidebarMenuText
+      $isActive={isActiveMenu}
+      $onMenuHover={onMenuHover}
+      className={'menuText'}
+    >
+      {children}
+    </SidebarMenuText>
+  );
 };
 
 export const AmSideBarMenuChild: React.FC<ISideBarMenuChild> = ({
   children,
+  openChild,
+  activeMenuChild,
 }) => {
-  return <SideBarMenuChildStyle>{children}</SideBarMenuChildStyle>;
+  return (
+    <SideBarMenuChildStyle $show={openChild}>
+      {React.Children.map(children, (child) => {
+        return React.isValidElement(child)
+          ? React.cloneElement(child, {
+              // @ts-ignore
+              activeMenuChild,
+            })
+          : child;
+      })}
+    </SideBarMenuChildStyle>
+  );
 };
 
 export const AmSideBarMenuChildItem: React.FC<ISideBarMenuChildItem> = ({
   children,
   onClick,
+  menuIndex,
+  activeMenuChild,
 }) => {
   return (
-    <SideBarMenuChildItemStyle>
-      <SideBarMenuChildItemTextStyle>{children}</SideBarMenuChildItemTextStyle>
+    <SideBarMenuChildItemStyle
+      $isActive={menuIndex?.toLowerCase() === activeMenuChild?.toLowerCase()}
+    >
+      <SideBarMenuChildItemTextStyle
+        $isActive={menuIndex?.toLowerCase() === activeMenuChild?.toLowerCase()}
+        onClick={onClick}
+      >
+        {children}
+      </SideBarMenuChildItemTextStyle>
     </SideBarMenuChildItemStyle>
   );
 };

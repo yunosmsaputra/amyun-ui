@@ -173,8 +173,59 @@ export const Default: Story = {
         </AmSideBarMenuIcon>
         <AmSideBarMenuText>Master</AmSideBarMenuText>
         <AmSideBarMenuChild>
-          <AmSideBarMenuChildItem>Unit</AmSideBarMenuChildItem>
+          <AmSideBarMenuChildItem menuIndex={'master-unit'}>
+            Unit
+          </AmSideBarMenuChildItem>
+          <AmSideBarMenuChildItem menuIndex={'master-user'}>
+            User
+          </AmSideBarMenuChildItem>
         </AmSideBarMenuChild>
+      </AmSidebarMenu>,
+      <AmSidebarMenu
+        menuIndex={'monitoring'}
+        onClick={() => {
+          {
+            /* This is a primary button */
+          }
+        }}
+      >
+        <AmSideBarMenuIcon>
+          <AmSideBarMenuIconState>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="25"
+              viewBox="0 0 24 25"
+              fill="none"
+            >
+              <path
+                d="M7 20.7437H17M9 16.7437V20.7437M15 16.7437V20.7437M3 5.74365C3 5.47844 3.10536 5.22408 3.29289 5.03655C3.48043 4.84901 3.73478 4.74365 4 4.74365H20C20.2652 4.74365 20.5196 4.84901 20.7071 5.03655C20.8946 5.22408 21 5.47844 21 5.74365V15.7437C21 16.0089 20.8946 16.2632 20.7071 16.4508C20.5196 16.6383 20.2652 16.7437 20 16.7437H4C3.73478 16.7437 3.48043 16.6383 3.29289 16.4508C3.10536 16.2632 3 16.0089 3 15.7437V5.74365Z"
+                stroke="#697586"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </AmSideBarMenuIconState>
+          <AmSideBarMenuIconActive>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="25"
+              viewBox="0 0 24 25"
+              fill="none"
+            >
+              <path
+                d="M7 20.7437H17M9 16.7437V20.7437M15 16.7437V20.7437M3 5.74365C3 5.47844 3.10536 5.22408 3.29289 5.03655C3.48043 4.84901 3.73478 4.74365 4 4.74365H20C20.2652 4.74365 20.5196 4.84901 20.7071 5.03655C20.8946 5.22408 21 5.47844 21 5.74365V15.7437C21 16.0089 20.8946 16.2632 20.7071 16.4508C20.5196 16.6383 20.2652 16.7437 20 16.7437H4C3.73478 16.7437 3.48043 16.6383 3.29289 16.4508C3.10536 16.2632 3 16.0089 3 15.7437V5.74365Z"
+                stroke="#2671d9"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </AmSideBarMenuIconActive>
+        </AmSideBarMenuIcon>
+        <AmSideBarMenuText>Monitoring</AmSideBarMenuText>
       </AmSidebarMenu>,
     ],
   },

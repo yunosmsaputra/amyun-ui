@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { blueColorLib, neutralColorLib } from '../color';
+import { b } from 'vite/dist/node/types.d-aGj9QkWt';
 
 export const SidebarStyles = styled.div`
   background: #fff;
@@ -7,7 +8,7 @@ export const SidebarStyles = styled.div`
   width: 80px;
   height: 100vh;
   border-right: 1px solid ${neutralColorLib.disbled};
-  transition: width 0.5s ease-in;
+  transition: width 0.03s ease-in;
   &:hover {
     width: 336px;
     padding: 24px 24px 24px 16px;
@@ -35,14 +36,8 @@ export const SidebarMenu = styled.div<{
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
-  color: ${(props) => (props.$isActive ? blueColorLib.main : '#697586')};
   margin-top: 8px;
   border-radius: 8px;
-  &:hover {
-    background: #e9f1fb;
-    color: ${blueColorLib.main};
-    cursor: pointer;
-  }
   &:first-of-type {
     margin-top: 0;
   }
@@ -50,15 +45,22 @@ export const SidebarMenu = styled.div<{
 
 export const SidebarMenuText = styled.div<{
   $isActive?: boolean;
+  $onMenuHover?: boolean;
 }>`
   font-size: 12px;
   font-weight: 600;
   width: calc(100% - 48px);
+  color: ${(props) => (props.$isActive ? blueColorLib.main : '#697586')};
   background: ${(props) =>
     props.$isActive ? blueColorLib.surface : neutralColorLib.white};
-  padding: 16px 12px;
+  padding: 16px 12px 16px 0;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+  ${SidebarMenu}:hover & {
+    cursor: pointer;
+    background-color: ${blueColorLib.surface};
+    color: ${blueColorLib.main};
+  }
 `;
 
 export const SidebarMenuIconContainer = styled.div<{
@@ -72,6 +74,11 @@ export const SidebarMenuIconContainer = styled.div<{
   border-bottom-left-radius: 8px;
   border-top-right-radius: ${(props) => (props.$onMenuHover ? '0' : '8px')};
   border-bottom-right-radius: ${(props) => (props.$onMenuHover ? '0' : '8px')};
+  ${SidebarMenu}:hover & {
+    cursor: pointer;
+    background-color: ${blueColorLib.surface};
+    color: ${blueColorLib.main};
+  }
 `;
 
 export const SidebarMenuIcon = styled.div`
@@ -82,20 +89,41 @@ export const SidebarMenuIcon = styled.div`
   height: 24px;
 `;
 
-export const SideBarMenuChildStyle = styled.div`
+export const SideBarMenuChildStyle = styled.div<{
+  $show?: boolean;
+}>`
   width: 100%;
   padding-left: 24px;
+  display: ${(props) => (props.$show ? 'block' : 'none')};
 `;
 
-export const SideBarMenuChildItemStyle = styled.div`
-  border-left: 2px solid ${blueColorLib.main};
+export const SideBarMenuChildItemStyle = styled.div<{
+  $isActive?: boolean;
+}>`
+  border-left: 2px solid
+    ${(props) => (props.$isActive ? blueColorLib.main : neutralColorLib.stroke)};
   padding: 4px 0 4px 30px;
   background-color: ${neutralColorLib.white};
+  &:hover {
+    border-color: ${blueColorLib.main};
+    cursor: pointer;
+  }
 `;
 
-export const SideBarMenuChildItemTextStyle = styled.div`
+export const SideBarMenuChildItemTextStyle = styled.div<{
+  $isActive?: boolean;
+}>`
   padding: 16px;
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
+  color: ${(props) => (props.$isActive ? blueColorLib.main : '#697586')};
+  background: ${(props) =>
+    props.$isActive ? blueColorLib.surface : neutralColorLib.white};
+  border-radius: 8px;
+  &:hover {
+    background-color: ${blueColorLib.surface};
+    color: ${blueColorLib.main};
+    font-weight: 600;
+  }
 `;
