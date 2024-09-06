@@ -23,12 +23,12 @@ export {
   default as AmSidebar,
   AmSidebarMenu,
   AmSidebarAppIcon,
-    AmSideBarMenuIcon,
-    AmSideBarMenuText,
-    AmSideBarMenuIconState,
-    AmSideBarMenuIconActive,
-    AmSideBarAppIconMain,
-    AmSidebarAppIconMini,
+  AmSideBarMenuIcon,
+  AmSideBarMenuText,
+  AmSideBarMenuIconState,
+  AmSideBarMenuIconActive,
+  AmSideBarAppIconMain,
+  AmSidebarAppIconMini,
 } from './Sidebar/Sidebar';
 export {
   default as AmTab,

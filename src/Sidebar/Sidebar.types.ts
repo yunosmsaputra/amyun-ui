@@ -22,8 +22,7 @@ export interface ISidebarMenuIcon extends ISidebarMenu {
   isActiveMenu?: boolean;
 }
 export interface ISidebarMenuIconState extends React.PropsWithChildren {}
-export interface ISidebarMenuText extends ISidebarMenuIcon {
-}
+export interface ISidebarMenuText extends ISidebarMenuIcon {}
 
 export interface ISideBarMenuChild extends React.PropsWithChildren {}
 export interface ISideBarMenuChildItem extends React.PropsWithChildren {

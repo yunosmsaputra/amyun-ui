@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {blueColorLib, neutralColorLib} from '../color';
+import { blueColorLib, neutralColorLib } from '../color';
 
 export const SidebarStyles = styled.div`
   background: #fff;
@@ -55,7 +55,7 @@ export const SidebarMenuText = styled.div<{
   font-weight: 600;
   width: calc(100% - 48px);
   background: ${(props) =>
-      props.$isActive ? blueColorLib.surface : neutralColorLib.white};
+    props.$isActive ? blueColorLib.surface : neutralColorLib.white};
   padding: 16px 12px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -66,16 +66,16 @@ export const SidebarMenuIconContainer = styled.div<{
   $onMenuHover?: boolean;
 }>`
   background: ${(props) =>
-      props.$isActive ? blueColorLib.surface : neutralColorLib.white};
+    props.$isActive ? blueColorLib.surface : neutralColorLib.white};
   padding: 12px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
-  border-top-right-radius: ${(props) => props.$onMenuHover ? '0' : '8px'};
-  border-bottom-right-radius: ${(props) => props.$onMenuHover ? '0' : '8px'};
-`
+  border-top-right-radius: ${(props) => (props.$onMenuHover ? '0' : '8px')};
+  border-bottom-right-radius: ${(props) => (props.$onMenuHover ? '0' : '8px')};
+`;
 
 export const SidebarMenuIcon = styled.div`
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 24px;
@@ -83,19 +83,19 @@ display: flex;
 `;
 
 export const SideBarMenuChildStyle = styled.div`
-    width: 100%;
+  width: 100%;
   padding-left: 24px;
-`
+`;
 
 export const SideBarMenuChildItemStyle = styled.div`
   border-left: 2px solid ${blueColorLib.main};
   padding: 4px 0 4px 30px;
   background-color: ${neutralColorLib.white};
-`
+`;
 
 export const SideBarMenuChildItemTextStyle = styled.div`
-    padding: 16px;
+  padding: 16px;
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
-`
+`;
