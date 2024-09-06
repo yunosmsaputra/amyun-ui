@@ -26,7 +26,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'For use router in sidemenu use function <b>onClick()</b> on tag <i>AmSidebarMenu</i>',
+          'For use router in sidemenu use function <b>onClick()</b> on tag <i>AmSidebarMenu</i> & <i>AmSideBarMenuChildItem</i>',
       },
     },
   },
@@ -173,10 +173,10 @@ export const Default: Story = {
         </AmSideBarMenuIcon>
         <AmSideBarMenuText>Master</AmSideBarMenuText>
         <AmSideBarMenuChild>
-          <AmSideBarMenuChildItem menuIndex={'master-unit'}>
+          <AmSideBarMenuChildItem menuIndex={'master-unit'} onClick={() => {}}>
             Unit
           </AmSideBarMenuChildItem>
-          <AmSideBarMenuChildItem menuIndex={'master-user'}>
+          <AmSideBarMenuChildItem menuIndex={'master-user'} onClick={() => {}}>
             User
           </AmSideBarMenuChildItem>
         </AmSideBarMenuChild>
