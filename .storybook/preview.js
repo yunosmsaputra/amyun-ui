@@ -7,6 +7,11 @@ const preview = {
         date: /Date$/i,
       },
     },
+    docs: {
+      controls: {
+        exclude: ['style']
+      }
+    }
   },
   tags: ['autodocs']
 };
