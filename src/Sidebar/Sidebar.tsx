@@ -128,8 +128,8 @@ export const AmSidebarMenu: React.FC<ISidebarMenu> = ({
     >
       {React.Children.map(children, (child) => {
         const childElement = child as React.ReactElement;
-        // @ts-ignore
         const displayName =
+            // @ts-ignore
           childElement.type.displayName || childElement.type.name || 'Unknown';
         return React.isValidElement(child)
           ? onMenuHover
@@ -166,8 +166,8 @@ export const AmSideBarMenuIcon: React.FC<ISidebarMenuIcon> = ({
     >
       {childrenArray.map((child, index) => {
         const childElement = child as React.ReactElement;
-        // @ts-ignore
         const displayName =
+            // @ts-ignore
           childElement.type.displayName || childElement.type.name || 'Unknown';
         if (isActiveMenu) {
           if (displayName === 'AmSideBarMenuIconActive') {
