@@ -119,10 +119,11 @@ export const AmSidebarMenu: React.FC<ISidebarMenu> = ({
     if (activeMenu?.toLowerCase() === menuIndex?.toLowerCase()) {
       setOnIsActiveMenu(true);
       const childrenArray = React.Children.toArray(children);
-      // @ts-ignore
       const haveChild = childrenArray.some(
         (child) =>
+          // @ts-ignore
           child.type.displayName === 'AmSideBarMenuChild' ||
+          // @ts-ignore
           child.type.name === 'AmSideBarMenuChild',
       );
       if (haveChild) {
@@ -137,10 +138,11 @@ export const AmSidebarMenu: React.FC<ISidebarMenu> = ({
   }, [activeMenu]);
   const handleClick = () => {
     const childrenArray = React.Children.toArray(children);
-    // @ts-ignore
     const haveChild = childrenArray.some(
       (child) =>
+        // @ts-ignore
         child.type.displayName === 'AmSideBarMenuChild' ||
+        // @ts-ignore
         child.type.name === 'AmSideBarMenuChild',
     );
     if (haveChild) {
