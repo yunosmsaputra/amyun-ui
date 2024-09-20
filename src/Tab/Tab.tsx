@@ -27,7 +27,11 @@ const AmTab: React.FC<IAmTab> = ({ children = '', activeTab = 'Tab 1' }) => {
   );
 };
 
-export const AmTabTitle: React.FC<IAmTabTitle> = ({ children, activeTab, className }) => {
+export const AmTabTitle: React.FC<IAmTabTitle> = ({
+  children,
+  activeTab,
+  className,
+}) => {
   return (
     <TabTitle className={className}>
       {React.Children.map(children, (child) => {
@@ -45,19 +49,21 @@ export const AmTabTitleList: React.FC<IAmTabTitleList> = ({
   activeTab,
   onClick,
   children,
-    className
+  className,
 }) => {
   return activeTab === value ? (
     <TabTitleListActive className={className}>{children}</TabTitleListActive>
   ) : (
-    <TabTitleList className={className} onClick={onClick}>{children}</TabTitleList>
+    <TabTitleList className={className} onClick={onClick}>
+      {children}
+    </TabTitleList>
   );
 };
 
 export const AmTabContent: React.FC<IAmTabContent> = ({
   children,
   activeTab,
-    className
+  className,
 }) => {
   return (
     <TabContent className={className}>

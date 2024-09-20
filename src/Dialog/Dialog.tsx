@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from './Dialog.styles';
 import { IDialog, IDialogContent, IDialogTitle } from './Dialog.types';
-import FlexComponent from "../Flex/Flex";
+import FlexComponent from '../Flex/Flex';
 
 export const DialogComponent: React.FC<IDialog> = ({
   width = '540px',

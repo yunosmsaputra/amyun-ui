@@ -1,4 +1,4 @@
-import React, {LegacyRef, useState} from 'react';
+import React, { LegacyRef, useState } from 'react';
 
 export interface IIcon {
   size?: number;

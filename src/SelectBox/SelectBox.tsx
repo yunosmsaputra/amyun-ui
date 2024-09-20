@@ -15,7 +15,7 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   position = 'bottom',
   value,
   text,
-    name,
+  name,
   onChange,
   style,
   className,
@@ -28,10 +28,10 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
     setIsOpen(false);
     const params = {
       target: {
-        'name': name,
-        'value': val
-      }
-    }
+        name: name,
+        value: val,
+      },
+    };
     onChange && onChange(params);
   };
 

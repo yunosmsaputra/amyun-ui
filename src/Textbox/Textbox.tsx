@@ -13,7 +13,7 @@ const TextBoxComponent: React.FC<ITextbox> = ({
   onChange,
   style,
   children,
-    className
+  className,
 }) => {
   return (
     <TextboxContainer style={style} className={className}>

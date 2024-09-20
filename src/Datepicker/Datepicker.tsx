@@ -21,10 +21,10 @@ import { ButtonComponent } from '../Button';
 
 const AmDatePicker: React.FC<IDatePicker> = ({
   placeholder = 'Pilih Tanggal',
-    name,
-    value,
+  name,
+  value,
   onChange,
-    style
+  style,
 }) => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const [valueDate, setValue] = useState<string>('');
@@ -93,10 +93,10 @@ const AmDatePicker: React.FC<IDatePicker> = ({
       setIsShow(false);
       const params = {
         target: {
-          'name': name,
-          'value': valueTemp
-        }
-      }
+          name: name,
+          value: valueTemp,
+        },
+      };
       onChange && onChange(params);
     }
   };

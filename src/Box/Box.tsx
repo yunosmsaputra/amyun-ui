@@ -10,7 +10,7 @@ const AmBox: React.FC<BoxTypes> = ({
   height,
   scrollX,
   scrollY,
-    className
+  className,
 }) => {
   return (
     <BoxStyles

@@ -52,7 +52,7 @@ export const Default: Story = {
     position: 'bottom',
     value: 'Option 1',
     size: 'sm',
-    name: 'options'
+    name: 'options',
   },
 };
 
@@ -66,6 +66,6 @@ export const OptionsObject: Story = {
     value: 'Option 1',
     text: 'text',
     size: 'md',
-    name: 'options'
+    name: 'options',
   },
 };

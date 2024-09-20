@@ -24,7 +24,7 @@ const ButtonComponent: React.FC<IButton> = ({
   popupActionList,
   style,
   children,
-    className
+  className,
 }) => {
   const [onShowPopup, setOnShowPopup] = useState<boolean>(false);
   const handleClick = () => {

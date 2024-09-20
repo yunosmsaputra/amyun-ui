@@ -9,7 +9,7 @@ const TextAreaComponent: React.FC<ITextarea> = ({
   name,
   style,
   onChange,
-    className
+  className,
 }) => {
   return (
     <TextareaStyles
