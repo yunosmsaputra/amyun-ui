@@ -22,7 +22,6 @@ export const TableContainer = styled.div<{
       background: #ffffff;
       th {
         padding: 16px 12px;
-        text-transform: capitalize;
         & .th-cell-text {
           &:hover {
             cursor: pointer;

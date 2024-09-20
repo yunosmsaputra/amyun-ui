@@ -27,7 +27,6 @@ export const Default: Story = {
     children: [
       <Breadcrumb
         active="Detail"
-        icon="ic-arrow"
         nodes={['Dashboard', 'Detail']}
         key={'breadcrumb'}
       />,

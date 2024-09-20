@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { blueColorLib, neutralColorLib } from '../color';
 
 export const TextboxContainer = styled.div`
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 `;
 export const TextboxStyle = styled.input`
   outline: none;
@@ -17,4 +19,13 @@ export const TextboxStyle = styled.input`
   &::placeholder {
     color: #9c9c9c;
   }
+  &:focus {
+    border-color: ${blueColorLib.border};
+  }
+`;
+
+export const TextBoxAppendInner = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 12px;
 `;

@@ -1,8 +1,8 @@
 import React from 'react';
 
 export interface IDialog extends React.PropsWithChildren {
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   expandable?: boolean;
   isShow?: boolean;
 }

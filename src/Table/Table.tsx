@@ -76,7 +76,7 @@ export const TableComponent: React.FC<ITable> = ({
                   className={'th-cell-text'}
                 >
                   <Text color="#5979A6" size={12} weight="semibold">
-                    {value.title.toLowerCase()}
+                    {value.title}
                   </Text>
                   {value.sort ? (
                     <Icon
@@ -110,7 +110,7 @@ export const TableComponent: React.FC<ITable> = ({
                         val.clickRow && handleClickRow(value);
                       }}
                     >
-                      {val.render ? val.render(value[val.key]) : value[val.key]}
+                      {val.render ? val.render(value) : value[val.key]}
                     </td>
                   ))}
                 </tr>

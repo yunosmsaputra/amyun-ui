@@ -7,7 +7,7 @@ export const TabStyle = styled.div`
 export const TabTitle = styled.div`
   display: flex;
   gap: 6px;
-  padding: 4px 18px 0 16px;
+  padding: 4px 0 0;
   border-bottom: 1px solid #f0f3f7;
   background: #fff;
 `;
@@ -55,5 +55,5 @@ export const TabTitleListActive = styled.div`
 `;
 
 export const TabContent = styled.div`
-  padding: 12px 12px 32px 12px;
+  padding: 12px 0 32px;
 `;

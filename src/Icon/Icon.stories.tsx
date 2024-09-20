@@ -18,7 +18,7 @@ const meta = {
     },
     name: {
       description: 'Icon name',
-      control: 'radio',
+      control: 'select',
       options: [
         'plus',
         'sort-inactive',
@@ -37,6 +37,7 @@ const meta = {
         'user',
         'calendar',
         'upload',
+          'download',
         'view-column',
         'eye',
         'eye-outline',
@@ -46,6 +47,12 @@ const meta = {
         'edit-outline',
         'delete',
         'delete-outline',
+          'home',
+          'users',
+          'document-2',
+          'master',
+          'material',
+          'setting'
       ],
     },
     className: {

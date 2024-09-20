@@ -8,11 +8,11 @@ import {
   DialogTitle,
 } from './Dialog.styles';
 import { IDialog, IDialogContent, IDialogTitle } from './Dialog.types';
-import { AmFlex } from '../index';
+import FlexComponent from "../Flex/Flex";
 
 export const DialogComponent: React.FC<IDialog> = ({
-  width = 540,
-  height = 500,
+  width = '540px',
+  height = '500px',
   expandable = false,
   isShow = true,
   children,
@@ -52,10 +52,10 @@ export const AmDialogTitle: React.FC<IDialogTitle> = ({
   };
   return (
     <DialogTitle style={style}>
-      <AmFlex justifyContent={'space-between'} alignItems={'center'}>
+      <FlexComponent justifyContent={'space-between'} alignItems={'center'}>
         {children}
         <DialogClose onClick={() => handleOnClose()} />
-      </AmFlex>
+      </FlexComponent>
     </DialogTitle>
   );
 };

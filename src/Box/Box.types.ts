@@ -7,4 +7,5 @@ export interface BoxTypes extends React.PropsWithChildren {
   scrollX?: boolean;
   scrollY?: boolean;
   style?: React.CSSProperties;
+  className?: string;
 }

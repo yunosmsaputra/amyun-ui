@@ -27,9 +27,9 @@ const AmTab: React.FC<IAmTab> = ({ children = '', activeTab = 'Tab 1' }) => {
   );
 };
 
-export const AmTabTitle: React.FC<IAmTabTitle> = ({ children, activeTab }) => {
+export const AmTabTitle: React.FC<IAmTabTitle> = ({ children, activeTab, className }) => {
   return (
-    <TabTitle>
+    <TabTitle className={className}>
       {React.Children.map(children, (child) => {
         return React.isValidElement(child)
           ? // @ts-ignore
@@ -45,20 +45,22 @@ export const AmTabTitleList: React.FC<IAmTabTitleList> = ({
   activeTab,
   onClick,
   children,
+    className
 }) => {
   return activeTab === value ? (
-    <TabTitleListActive>{children}</TabTitleListActive>
+    <TabTitleListActive className={className}>{children}</TabTitleListActive>
   ) : (
-    <TabTitleList onClick={onClick}>{children}</TabTitleList>
+    <TabTitleList className={className} onClick={onClick}>{children}</TabTitleList>
   );
 };
 
 export const AmTabContent: React.FC<IAmTabContent> = ({
   children,
   activeTab,
+    className
 }) => {
   return (
-    <TabContent>
+    <TabContent className={className}>
       {React.Children.map(children, (child) => {
         return React.isValidElement(child)
           ? // @ts-ignore

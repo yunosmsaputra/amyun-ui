@@ -5,9 +5,10 @@ export interface ISelectBox {
   placeholder?: string;
   options?: any[];
   position?: string;
-  value?: string;
+  value?: any;
   text?: string;
-  onChange?: (value: string) => void;
+  name?: string;
+  onChange?: (value: any) => void;
   style?: React.CSSProperties;
   className?: string;
 }

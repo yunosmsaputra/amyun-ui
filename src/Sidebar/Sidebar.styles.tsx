@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { blueColorLib, neutralColorLib } from '../color';
-import { b } from 'vite/dist/node/types.d-aGj9QkWt';
 
 export const SidebarStyles = styled.div`
+  position: absolute;
+  z-index: 10;
   background: #fff;
   padding: 24px 16px;
   width: 80px;

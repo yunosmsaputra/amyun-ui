@@ -10,6 +10,7 @@ const AmBox: React.FC<BoxTypes> = ({
   height,
   scrollX,
   scrollY,
+    className
 }) => {
   return (
     <BoxStyles
@@ -19,6 +20,7 @@ const AmBox: React.FC<BoxTypes> = ({
       $scrollX={scrollX}
       $scrollY={scrollY}
       style={style}
+      className={className}
     >
       {children}
     </BoxStyles>

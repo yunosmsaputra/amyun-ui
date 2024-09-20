@@ -13,8 +13,9 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   placeholder = 'Pilih salah satu',
   options = [],
   position = 'bottom',
-  value = '',
+  value,
   text,
+    name,
   onChange,
   style,
   className,
@@ -25,7 +26,13 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   const handleChange = (val: any) => {
     setValue(val);
     setIsOpen(false);
-    onChange && onChange(val);
+    const params = {
+      target: {
+        'name': name,
+        'value': val
+      }
+    }
+    onChange && onChange(params);
   };
 
   useEffect(() => {

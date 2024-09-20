@@ -24,6 +24,7 @@ const ButtonComponent: React.FC<IButton> = ({
   popupActionList,
   style,
   children,
+    className
 }) => {
   const [onShowPopup, setOnShowPopup] = useState<boolean>(false);
   const handleClick = () => {
@@ -62,6 +63,7 @@ const ButtonComponent: React.FC<IButton> = ({
       }}
       // @ts-ignore
       ref={domNode}
+      className={className}
     >
       <ButtonStyles
         $type={type}
@@ -78,6 +80,7 @@ const ButtonComponent: React.FC<IButton> = ({
             color={iconColor ? iconColor : '#FFF'}
             name={prependIcon}
             size={iconSize ? iconSize : 14}
+            isBox={false}
             className={'icon-button'}
           ></Icon>
         )}

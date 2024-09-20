@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Textbox from './Textbox';
+import Textbox, { AmTextBoxPrependInner } from './Textbox';
+import React from 'react';
+import { AmIcon } from '../index';
+import { blueColorLib } from '../color';
 
 const meta = {
   title: 'Form Component/Textbox',
@@ -30,4 +33,12 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    children: [
+      <AmTextBoxPrependInner>
+        <AmIcon name={'search'} size={12} color={blueColorLib.main}></AmIcon>
+      </AmTextBoxPrependInner>,
+    ],
+  },
+};

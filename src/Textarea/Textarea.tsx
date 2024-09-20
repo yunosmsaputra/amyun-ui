@@ -9,6 +9,7 @@ const TextAreaComponent: React.FC<ITextarea> = ({
   name,
   style,
   onChange,
+    className
 }) => {
   return (
     <TextareaStyles
@@ -18,6 +19,7 @@ const TextAreaComponent: React.FC<ITextarea> = ({
       name={name}
       style={style}
       onChange={onChange}
+      className={className}
     ></TextareaStyles>
   );
 };

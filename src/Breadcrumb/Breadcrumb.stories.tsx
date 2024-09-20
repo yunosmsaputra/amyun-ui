@@ -11,11 +11,6 @@ const meta = {
       description: 'List of breadcrumb node',
       control: 'object',
     },
-    icon: {
-      name: 'Icon',
-      description: 'Icon for divider list breadcrumb (use icon from Icon List)',
-      control: 'text',
-    },
     active: {
       name: 'Active Breadcrumb',
       description: 'Define active breadcrumb (must in node list)',
@@ -31,7 +26,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     nodes: ['Dashboard', 'Detail'],
-    icon: 'ic-arrow',
     active: 'Detail',
   },
 };

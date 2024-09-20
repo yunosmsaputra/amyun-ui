@@ -10,14 +10,14 @@ export const DialogStyles = styled.div<{
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 100;
   display: ${(props) => (props.$isShow ? 'block' : 'none')};
 `;
 
 export const DialogContainer = styled.div<{
-  $width: number;
+  $width: string;
   $expandable: boolean;
-  $height: number;
+  $height: string;
 }>`
   background-color: #ffffff;
   border-radius: 16px;
@@ -27,12 +27,12 @@ export const DialogContainer = styled.div<{
   right: ${(props) => (props.$expandable ? '12px' : 'unset')};
   transform: ${(props) =>
     props.$expandable ? 'unset' : 'translate(-50%, -50%)'};
-  width: ${(props) => props.$width}px;
+  width: ${(props) => props.$width};
   height: ${(props) =>
     props.$expandable
       ? 'calc(100vh - 24px)'
       : props.$height
-        ? `${props.$height}px`
+        ? `${props.$height}`
         : 'unset'};
 `;
 
@@ -54,13 +54,13 @@ export const DialogClose = styled.div`
 
 export const DialogContent = styled.div<{
   $expandable?: boolean;
-  $height?: number;
+  $height?: string;
 }>`
   padding: 0 18px 0 24px;
   max-height: ${(props) =>
     props.$expandable
       ? `calc(100vh - 184px)`
-      : `calc(${props.$height}px - 160px)`};
+      : `calc(${props.$height} - 160px)`};
   min-height: ${(props) =>
     props.$expandable ? `calc(100vh - 184px)` : `auto`};
   overflow-y: auto;
@@ -69,6 +69,7 @@ export const DialogContent = styled.div<{
 export const DialogActions = styled.div`
   padding: 18px 18px 18px 22px;
   display: flex;
+  gap: 8px;
   justify-content: flex-end;
   border-top: 1px solid #f0f3f7;
   margin-top: 10px;

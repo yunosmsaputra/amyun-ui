@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { blueColorLib, neutralColorLib } from '../color';
 
 export const SelectBoxStyles = styled.div<{
   additionalClass?: string;
@@ -10,7 +11,8 @@ export const SelectboxContainer = styled.div<{
   $size: string;
   $open: boolean;
 }>`
-  border: 1px solid #e5e7e9;
+  border: 1px solid
+    ${(props) => (props.$open ? blueColorLib.border : neutralColorLib.stroke)};
   padding: ${(props) =>
     props.$size === 'md' ? '8px 10px 8px 12px' : '4px 6px 4px 8px'};
   border-radius: 8px;
@@ -60,6 +62,8 @@ export const OptionBoxContainer = styled.div<{
   border-radius: 8px;
   z-index: 100;
   margin: ${(props) => (props.$position === 'top' ? '0 0 4px 0' : '4px 0')};
+  max-height: 150px;
+  overflow-y: auto;
 `;
 
 export const OptionBoxList = styled.div<{

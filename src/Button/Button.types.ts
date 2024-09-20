@@ -16,4 +16,5 @@ export interface IButton extends React.PropsWithChildren {
   popupPosition?: string;
   onClick?: () => void;
   style?: React.CSSProperties;
+  className?: string;
 }

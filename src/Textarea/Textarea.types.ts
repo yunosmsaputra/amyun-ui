@@ -7,4 +7,5 @@ export interface ITextarea {
   name?: string;
   onChange?: (e: any) => void;
   style?: React.CSSProperties;
+  className?: string;
 }

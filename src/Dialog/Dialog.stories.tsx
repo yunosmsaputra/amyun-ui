@@ -32,7 +32,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    width: 540,
+    width: '540px',
     children: [
       <AmDialogTitle>
         <AmText size={20} weight={'semibold'}>
@@ -56,7 +56,7 @@ export const Default: Story = {
 
 export const Expandable: Story = {
   args: {
-    width: 540,
+    width: '540px',
     children: [
       <AmDialogTitle>
         <AmText size={20} weight={'semibold'}>
