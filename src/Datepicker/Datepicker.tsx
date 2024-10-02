@@ -25,6 +25,7 @@ const AmDatePicker: React.FC<IDatePicker> = ({
   value,
   onChange,
   style,
+  className
 }) => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const [valueDate, setValue] = useState<string>('');
@@ -101,7 +102,7 @@ const AmDatePicker: React.FC<IDatePicker> = ({
     }
   };
   return (
-    <DatePickerStyle style={style}>
+    <DatePickerStyle style={style} className={className}>
       <DatePickerContainer
         $noValue={!valueDate}
         onClick={() => {

@@ -6,21 +6,20 @@ import {
   BreadcrumbText,
 } from './Breadcrumb.styles';
 
-const BreadcrumbComponent: React.FC<IBreadcrumb> = ({ nodes, active }) => {
+const BreadcrumbComponent: React.FC<IBreadcrumb> = ({ nodes, active, className }) => {
   return (
-    <BreadcrumbStyles>
+    <BreadcrumbStyles className={className}>
       {nodes?.map((value, index) => (
-        <>
+        <BreadcrumbStyles key={`breadcrumbArrow${index}`}>
           {index > 0 && index < nodes?.length && (
-            <BreadcrumbArrow key={`breadcrumbArrow${index}`}></BreadcrumbArrow>
+            <BreadcrumbArrow></BreadcrumbArrow>
           )}
           <BreadcrumbText
-            key={`breadcrumb${index}`}
             $isActive={value === active}
           >
             {value}
           </BreadcrumbText>
-        </>
+        </BreadcrumbStyles>
       ))}
     </BreadcrumbStyles>
   );

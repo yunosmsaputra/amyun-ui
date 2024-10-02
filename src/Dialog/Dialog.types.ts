@@ -5,11 +5,14 @@ export interface IDialog extends React.PropsWithChildren {
   height?: string;
   expandable?: boolean;
   isShow?: boolean;
+  type?: string;
+  onClose?: () => void;
 }
 
 export interface IDialogTitle extends React.PropsWithChildren {
   style?: React.CSSProperties;
   onClose?: () => void;
+  className?: string;
 }
 
 export interface IDialogContent extends IDialog {

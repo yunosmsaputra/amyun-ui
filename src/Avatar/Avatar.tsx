@@ -6,6 +6,7 @@ const AvatarComponent: React.FC<IAvatar> = ({
   size,
   children,
   style,
+  className
 }) => {
   const defaultStyle = {
     background: color ? color : '#FFF',
@@ -22,7 +23,7 @@ const AvatarComponent: React.FC<IAvatar> = ({
     ...defaultStyle,
     ...style,
   };
-  return <div style={styles}>{children}</div>;
+  return <div style={styles} className={className}>{children}</div>;
 };
 
 AvatarComponent.displayName = 'AmAvatar';

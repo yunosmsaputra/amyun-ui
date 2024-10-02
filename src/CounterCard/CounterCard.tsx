@@ -15,6 +15,7 @@ import {
 
 const AmCounterCard: React.FC<CounterCardTypes> = ({
   color = 'netral',
+  className,
   children,
 }) => {
   const [colorState, setColorState] = useState<string>();
@@ -22,7 +23,7 @@ const AmCounterCard: React.FC<CounterCardTypes> = ({
     setColorState(color);
   }, [color]);
   return (
-    <CounterCardStyles $color={color}>
+    <CounterCardStyles $color={color} className={className}>
       {React.Children.map(children, (child) => {
         return React.isValidElement(child)
           ? // @ts-ignore
@@ -35,19 +36,21 @@ const AmCounterCard: React.FC<CounterCardTypes> = ({
 
 export const AmCounterCardIcon: React.FC<ICounterCardIcon> = ({
   colorState,
+  className,
   children,
 }) => {
-  return <CounterCardIcon $color={colorState}>{children}</CounterCardIcon>;
+  return <CounterCardIcon $color={colorState} className={className}>{children}</CounterCardIcon>;
 };
 
 export default AmCounterCard;
 
 export const AmCounterCardData: React.FC<ICounterCardData> = ({
   children,
+  className,
   colorState,
 }) => {
   return (
-    <AmCounterCardDataStyles>
+    <AmCounterCardDataStyles className={className}>
       {React.Children.map(children, (child) => {
         return React.isValidElement(child)
           ? // @ts-ignore
@@ -59,24 +62,27 @@ export const AmCounterCardData: React.FC<ICounterCardData> = ({
 };
 
 export const AmCounterCardTitle: React.FC<ICounterCardData> = ({
+  className,
   children,
 }) => {
-  return <CounterCardTitleStyles>{children}</CounterCardTitleStyles>;
+  return <CounterCardTitleStyles className={className}>{children}</CounterCardTitleStyles>;
 };
 
 export const AmCounterCardDataContent: React.FC<ICounterCardData> = ({
   children,
+  className,
   colorState,
 }) => {
   return (
-    <CounterCardDataContentStyles $color={colorState}>
+    <CounterCardDataContentStyles $color={colorState} className={className}>
       {children}
     </CounterCardDataContentStyles>
   );
 };
 
 export const AmCounterCardDataSummary: React.FC<ICounterCardData> = ({
+  className,
   children,
 }) => {
-  return <CounterCardSummaryStyles>{children}</CounterCardSummaryStyles>;
+  return <CounterCardSummaryStyles className={className}>{children}</CounterCardSummaryStyles>;
 };

@@ -15,6 +15,8 @@ export const DialogComponent: React.FC<IDialog> = ({
   height = '500px',
   expandable = false,
   isShow = true,
+  type = 'form',
+  onClose,
   children,
 }) => {
   return (
@@ -23,7 +25,7 @@ export const DialogComponent: React.FC<IDialog> = ({
         {React.Children.map(children, (child) => {
           return React.isValidElement(child)
             ? // @ts-ignore
-              React.cloneElement(child, { expandable, height })
+              React.cloneElement(child, { expandable, height, type, onClose })
             : child;
         })}
       </DialogContainer>
@@ -38,6 +40,7 @@ export const AmDialogTitle: React.FC<IDialogTitle> = ({
   children,
   style,
   onClose,
+  className,
 }) => {
   const [isOpenDialog, setIsOpenDialog] = useState<IDialog>({
     isShow: false,
@@ -51,7 +54,7 @@ export const AmDialogTitle: React.FC<IDialogTitle> = ({
     onClose && onClose();
   };
   return (
-    <DialogTitle style={style}>
+    <DialogTitle style={style} className={className}>
       <FlexComponent justifyContent={'space-between'} alignItems={'center'}>
         {children}
         <DialogClose onClick={() => handleOnClose()} />

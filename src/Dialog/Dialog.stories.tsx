@@ -69,7 +69,7 @@ export const Expandable: Story = {
         </AmText>
       </AmDialogContent>,
       <AmDialogActions>
-        <AmButton color={'primary'} type={'fill'}>
+        <AmButton color={'blue'} type={'fill'}>
           Simpan Data
         </AmButton>
       </AmDialogActions>,

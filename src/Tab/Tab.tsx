@@ -14,9 +14,9 @@ import {
   IAmTabTitleList,
 } from './Tab.types';
 
-const AmTab: React.FC<IAmTab> = ({ children = '', activeTab = 'Tab 1' }) => {
+const AmTab: React.FC<IAmTab> = ({ children = '', activeTab = 'Tab 1', className }) => {
   return (
-    <TabStyle>
+    <TabStyle className={className}>
       {React.Children.map(children, (child) => {
         return React.isValidElement(child)
           ? // @ts-ignore
@@ -81,8 +81,9 @@ export const AmTabContentItem: React.FC<IAmTabContentItem> = ({
   children,
   contentValue,
   activeTab,
+  className
 }) => {
-  return <>{activeTab === contentValue && children}</>;
+  return <div className={className}>{activeTab === contentValue && children}</div>;
 };
 
 export default AmTab;
