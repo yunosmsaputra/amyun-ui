@@ -25,7 +25,7 @@ const AmDatePicker: React.FC<IDatePicker> = ({
   value,
   onChange,
   style,
-  className
+  className,
 }) => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const [valueDate, setValue] = useState<string>('');

@@ -39,7 +39,11 @@ export const AmCounterCardIcon: React.FC<ICounterCardIcon> = ({
   className,
   children,
 }) => {
-  return <CounterCardIcon $color={colorState} className={className}>{children}</CounterCardIcon>;
+  return (
+    <CounterCardIcon $color={colorState} className={className}>
+      {children}
+    </CounterCardIcon>
+  );
 };
 
 export default AmCounterCard;
@@ -65,7 +69,11 @@ export const AmCounterCardTitle: React.FC<ICounterCardData> = ({
   className,
   children,
 }) => {
-  return <CounterCardTitleStyles className={className}>{children}</CounterCardTitleStyles>;
+  return (
+    <CounterCardTitleStyles className={className}>
+      {children}
+    </CounterCardTitleStyles>
+  );
 };
 
 export const AmCounterCardDataContent: React.FC<ICounterCardData> = ({
@@ -84,5 +92,9 @@ export const AmCounterCardDataSummary: React.FC<ICounterCardData> = ({
   className,
   children,
 }) => {
-  return <CounterCardSummaryStyles className={className}>{children}</CounterCardSummaryStyles>;
+  return (
+    <CounterCardSummaryStyles className={className}>
+      {children}
+    </CounterCardSummaryStyles>
+  );
 };

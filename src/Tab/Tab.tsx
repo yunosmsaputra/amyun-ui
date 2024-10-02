@@ -14,7 +14,11 @@ import {
   IAmTabTitleList,
 } from './Tab.types';
 
-const AmTab: React.FC<IAmTab> = ({ children = '', activeTab = 'Tab 1', className }) => {
+const AmTab: React.FC<IAmTab> = ({
+  children = '',
+  activeTab = 'Tab 1',
+  className,
+}) => {
   return (
     <TabStyle className={className}>
       {React.Children.map(children, (child) => {
@@ -81,9 +85,11 @@ export const AmTabContentItem: React.FC<IAmTabContentItem> = ({
   children,
   contentValue,
   activeTab,
-  className
+  className,
 }) => {
-  return <div className={className}>{activeTab === contentValue && children}</div>;
+  return (
+    <div className={className}>{activeTab === contentValue && children}</div>
+  );
 };
 
 export default AmTab;
