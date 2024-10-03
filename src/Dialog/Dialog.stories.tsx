@@ -79,22 +79,22 @@ export const Expandable: Story = {
   },
 };
 
-// export const Confirmation: Story = {
-//   args: {
-//     type: 'confirmation',
-//     zIndex: 102,
-//     height: '200px',
-//     children: [
-//       <AmDialogTitle>
-//         <AmText size={16} weight={'semibold'}>Delete Data?</AmText>
-//       </AmDialogTitle>,
-//       <AmDialogContent>
-//         <AmText size={14}>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/></AmText>
-//       </AmDialogContent>,
-//       <AmDialogActions>
-//         <AmButton color={'blue'} type={'outline'}>Batal</AmButton>
-//         <AmButton color={'red'} type={'fill'}>Hapus</AmButton>
-//       </AmDialogActions>
-//     ]
-//   }
-// }
+export const Confirmation: Story = {
+  args: {
+    type: 'confirmation',
+    zIndex: 102,
+    height: '200px',
+    children: [
+      <AmDialogTitle>
+        <AmText size={16} weight={'semibold'}>Delete Data?</AmText>
+      </AmDialogTitle>,
+      <AmDialogContent>
+        <AmText size={14}>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/></AmText>
+      </AmDialogContent>,
+      <AmDialogActions>
+        <AmButton color={'blue'} type={'outline'}>Batal</AmButton>
+        <AmButton color={'red'} type={'fill'}>Hapus</AmButton>
+      </AmDialogActions>
+    ]
+  }
+}

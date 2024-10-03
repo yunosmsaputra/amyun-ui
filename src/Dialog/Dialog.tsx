@@ -68,7 +68,7 @@ export const AmDialogContent: React.FC<IDialogContent> = ({
   children,
   expandable,
   height,
-  type
+  type,
 }) => {
   return (
     <DialogContent $expandable={expandable} $height={height} $type={type}>

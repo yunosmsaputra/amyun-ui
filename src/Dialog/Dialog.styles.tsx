@@ -11,7 +11,7 @@ export const DialogStyles = styled.div<{
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: ${props => props.$zIndex};
+  z-index: ${(props) => props.$zIndex};
   display: ${(props) => (props.$isShow ? 'block' : 'none')};
 `;
 
@@ -62,7 +62,9 @@ export const DialogContent = styled.div<{
   max-height: ${(props) =>
     props.$expandable
       ? `calc(100vh - 184px)`
-      : props.$type === 'confirmation' ? '200px' : `calc(${props.$height} - 160px)`};
+      : props.$type === 'confirmation'
+        ? '200px'
+        : `calc(${props.$height} - 160px)`};
   min-height: ${(props) =>
     props.$expandable ? `calc(100vh - 184px)` : `auto`};
   overflow-y: auto;
