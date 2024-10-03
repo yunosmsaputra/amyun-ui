@@ -16,11 +16,12 @@ export const DialogComponent: React.FC<IDialog> = ({
   expandable = false,
   isShow = true,
   type = 'form',
+  zIndex = 100,
   onClose,
   children,
 }) => {
   return (
-    <DialogStyles $isShow={isShow}>
+    <DialogStyles $isShow={isShow} $zIndex={zIndex}>
       <DialogContainer $width={width} $expandable={expandable} $height={height}>
         {React.Children.map(children, (child) => {
           return React.isValidElement(child)
@@ -67,9 +68,10 @@ export const AmDialogContent: React.FC<IDialogContent> = ({
   children,
   expandable,
   height,
+  type
 }) => {
   return (
-    <DialogContent $expandable={expandable} $height={height}>
+    <DialogContent $expandable={expandable} $height={height} $type={type}>
       {children}
     </DialogContent>
   );

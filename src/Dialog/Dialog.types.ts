@@ -6,6 +6,7 @@ export interface IDialog extends React.PropsWithChildren {
   expandable?: boolean;
   isShow?: boolean;
   type?: string;
+  zIndex?: number;
   onClose?: () => void;
 }
 
@@ -17,5 +18,4 @@ export interface IDialogTitle extends React.PropsWithChildren {
 
 export interface IDialogContent extends IDialog {
   style?: React.CSSProperties;
-  expandable?: boolean;
 }

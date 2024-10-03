@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const DialogStyles = styled.div<{
   additionalClass?: string;
   $isShow?: boolean;
+  $zIndex?: number;
 }>`
   background-color: rgba(51, 51, 51, 0.3);
   position: absolute;
@@ -10,7 +11,7 @@ export const DialogStyles = styled.div<{
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: ${props => props.$zIndex};
   display: ${(props) => (props.$isShow ? 'block' : 'none')};
 `;
 
@@ -55,12 +56,13 @@ export const DialogClose = styled.div`
 export const DialogContent = styled.div<{
   $expandable?: boolean;
   $height?: string;
+  $type?: string;
 }>`
   padding: 0 18px 0 24px;
   max-height: ${(props) =>
     props.$expandable
       ? `calc(100vh - 184px)`
-      : `calc(${props.$height} - 160px)`};
+      : props.$type === 'confirmation' ? '200px' : `calc(${props.$height} - 160px)`};
   min-height: ${(props) =>
     props.$expandable ? `calc(100vh - 184px)` : `auto`};
   overflow-y: auto;
