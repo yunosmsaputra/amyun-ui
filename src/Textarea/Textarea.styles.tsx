@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { neutralColorLib } from '../color';
+import {blueColorLib, neutralColorLib} from '../color';
 
 export const TextareaStyles = styled.textarea<{}>`
   width: 100%;
@@ -14,4 +14,7 @@ export const TextareaStyles = styled.textarea<{}>`
   &::placeholder {
     color: ${neutralColorLib.textField};
   }
+    &:focus {
+        border-color: ${blueColorLib.border};
+    }
 `;

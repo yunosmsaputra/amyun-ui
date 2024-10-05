@@ -19,6 +19,7 @@ export const DialogContainer = styled.div<{
   $width: string;
   $expandable: boolean;
   $height: string;
+  $type?: string;
 }>`
   background-color: #ffffff;
   border-radius: 16px;
@@ -32,7 +33,7 @@ export const DialogContainer = styled.div<{
   height: ${(props) =>
     props.$expandable
       ? 'calc(100vh - 24px)'
-      : props.$height
+      : props.$type === 'confirmation' ? '238px' : props.$height
         ? `${props.$height}`
         : 'unset'};
 `;
@@ -63,7 +64,7 @@ export const DialogContent = styled.div<{
     props.$expandable
       ? `calc(100vh - 184px)`
       : props.$type === 'confirmation'
-        ? '200px'
+        ? '88px'
         : `calc(${props.$height} - 160px)`};
   min-height: ${(props) =>
     props.$expandable ? `calc(100vh - 184px)` : `auto`};

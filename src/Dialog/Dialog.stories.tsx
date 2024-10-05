@@ -89,7 +89,7 @@ export const Confirmation: Story = {
         <AmText size={16} weight={'semibold'}>Delete Data?</AmText>
       </AmDialogTitle>,
       <AmDialogContent>
-        <AmText size={14}>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/>Apakah yakin akan menghapus data?<br/></AmText>
+        <AmText size={14}>Apakah yakin akan menghapus data?</AmText>
       </AmDialogContent>,
       <AmDialogActions>
         <AmButton color={'blue'} type={'outline'}>Batal</AmButton>

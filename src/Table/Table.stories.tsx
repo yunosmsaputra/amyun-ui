@@ -49,6 +49,13 @@ const meta = {
       name: 'Table Height',
       description: 'Set table height when use fixed header',
     },
+    withPagination: {
+      name: 'Table With Pagination',
+      description: 'Add Pagination with table'
+    },
+    summaryPagination: {
+      description: 'Summary for pagination, set only if <b>withPagination</b> is true'
+    },
   },
 } satisfies Meta<typeof TableComponent>;
 
@@ -268,6 +275,75 @@ export const FixedHeader: Story = {
           return (
             <Button
               btnIcon="ic-three-dots"
+              iconColor="#9C9C9C"
+              iconSize={12}
+              onClick={() => {}}
+            />
+          );
+        },
+      },
+    ],
+    data: [
+      {
+        code: 'DT0001',
+        name: 'Data 0001',
+        description: 'Description for data 0001',
+      },
+      {
+        code: 'DT0002',
+        name: 'Data 0002',
+        description: 'Description for data 0002',
+      },
+      {
+        code: 'DT0003',
+        name: 'Data 0003',
+        description: 'Description for data 0003',
+      },
+      {
+        code: 'DT0004',
+        name: 'Data 0004',
+        description: 'Description for data 0004',
+      },
+    ],
+  },
+};
+
+
+export const WithPagination: Story = {
+  args: {
+    withPagination: true,
+    summaryPagination: {
+      totalData: 12,
+      totalPages: 5,
+      totalShowData: 10
+    },
+    onChangePage: () => {},
+    onChangeDataSize: () => {},
+    column: [
+      {
+        title: 'Code',
+        key: 'code',
+        sort: true,
+      },
+      {
+        title: 'Name',
+        key: 'name',
+        sort: true,
+      },
+      {
+        title: 'description',
+        key: 'description',
+        sort: false,
+      },
+      {
+        title: '',
+        key: '',
+        sort: false,
+        width: 52,
+        render: () => {
+          return (
+            <Button
+              btnIcon="three-dot"
               iconColor="#9C9C9C"
               iconSize={12}
               onClick={() => {}}

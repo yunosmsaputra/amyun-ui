@@ -5,6 +5,10 @@ import Flex from '../Flex/Flex';
 import Icon from '../Icon/Icon';
 import '../index.css';
 import { TableContainer } from './Table.styles';
+import PaginationComponent from "../Pagination/Pagination";
+import {neutralColorLib} from "../color";
+import SelectBox from "../SelectBox/SelectBox";
+import Box from "../Box/Box";
 
 export const TableComponent: React.FC<ITable> = ({
   column,
@@ -17,6 +21,10 @@ export const TableComponent: React.FC<ITable> = ({
   fixedHeader = false,
   tableHeight = 500,
   style,
+  withPagination = false,
+  summaryPagination,
+  onChangePage,
+  onChangeDataSize
 }) => {
   const [sort, setSort] = useState<any>({
     key: '',
@@ -45,7 +53,16 @@ export const TableComponent: React.FC<ITable> = ({
     onClickRow && onClickRow(value);
   };
 
+  const handleChangePage = (page: number) => {
+    onChangePage && onChangePage(page)
+  }
+
+  const handleChangeDataSize = (e: any) => {
+    onChangeDataSize && onChangeDataSize(e.target.value)
+  }
+
   return (
+    <>
     <TableContainer
       className={className}
       $fixedHeader={fixedHeader}
@@ -126,6 +143,27 @@ export const TableComponent: React.FC<ITable> = ({
         </tbody>
       </table>
     </TableContainer>
+      {withPagination && (
+        <Flex justifyContent={'space-between'} alignItems={'center'} style={{marginTop: '12px'}}>
+          <Flex gap={6} alignItems={'center'}>
+            <Text size={12} color={neutralColorLib.black}>Menampilkan</Text>
+            {
+              // @ts-ignore
+              (summaryPagination?.totalData > summaryPagination?.totalShowData) && (
+              <>
+                <Box width={56}>
+                  <SelectBox options={['10', '20', '25', '50', '100']} value={'10'} size={'sm'} onChange={handleChangeDataSize}></SelectBox>
+                </Box>
+                <Text size={12} color={neutralColorLib.black}>dari</Text>
+              </>
+            )}
+            <Text weight={'semibold'} size={12} color={neutralColorLib.black}>{summaryPagination?.totalData}</Text>
+            <Text size={12} color={neutralColorLib.black}>Data</Text>
+          </Flex>
+          <PaginationComponent totalPage={summaryPagination?.totalPages} onChange={(page) => {handleChangePage(page)}}></PaginationComponent>
+        </Flex>
+      )}
+    </>
   );
 };
 
@@ -139,11 +177,3 @@ export const NoDataComponent: React.FC<React.PropsWithChildren> = ({
 };
 
 NoDataComponent.displayName = 'AmTableNoData';
-
-export const WithPagination: React.FC<React.PropsWithChildren> = ({
-  children,
-}) => {
-  return <>{children}</>;
-};
-
-WithPagination.displayName = 'AmTablePagination';
