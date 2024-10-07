@@ -17,6 +17,8 @@ build-storybook:
 deploy-to-heroku:
   stage: deploy
   image: node:18 # You can change the Node version based on your setup
+  variables:
+    GIT_DEPTH: "0"
   script:
     - apt-get update -qy
     - apt-get install -y curl git
