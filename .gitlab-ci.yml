@@ -21,9 +21,7 @@ deploy-to-heroku:
     - apt-get update -qy
     - apt-get install -y curl git
     - curl https://cli-assets.heroku.com/install.sh | sh # Install Heroku CLI
-    - heroku git:remote -a your-heroku-app-name # Add Heroku remote
+    - heroku git:remote -a amyun-ui # Add Heroku remote
     - git remote -v
     - echo "Deploying Storybook to Heroku..."
     - git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/your-heroku-app-name.git HEAD:refs/heads/main # Deploy to Heroku
-  only:
-    - main # You can change this if you deploy from another branch
