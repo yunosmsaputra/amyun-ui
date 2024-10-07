@@ -8,7 +8,7 @@ export interface ITextbox extends React.PropsWithChildren {
   style?: React.CSSProperties;
   className?: string;
   type?: React.HTMLInputTypeAttribute;
-  defaultValue?: string;
+  defaultValue?:  string | number | readonly string[] | undefined;
   disabled?: boolean;
 }
 

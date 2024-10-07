@@ -246,6 +246,7 @@ export const TableComponent: React.FC<ITable> = ({
             {
               // @ts-ignore
               summaryPagination?.totalData >
+                // @ts-ignore
                 summaryPagination?.totalShowData && (
                 <>
                   <Box width={56}>

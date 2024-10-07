@@ -19,9 +19,10 @@ export const DialogComponent: React.FC<IDialog> = ({
   zIndex = 100,
   onClose,
   children,
+  className
 }) => {
   return (
-    <DialogStyles $isShow={isShow} $zIndex={zIndex}>
+    <DialogStyles $isShow={isShow} $zIndex={zIndex} className={className}>
       <DialogContainer
         $width={width}
         $expandable={expandable}
@@ -74,9 +75,10 @@ export const AmDialogContent: React.FC<IDialogContent> = ({
   expandable,
   height,
   type,
+  className
 }) => {
   return (
-    <DialogContent $expandable={expandable} $height={height} $type={type}>
+    <DialogContent $expandable={expandable} $height={height} $type={type} className={className}>
       {children}
     </DialogContent>
   );

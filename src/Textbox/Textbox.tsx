@@ -27,7 +27,6 @@ const TextBoxComponent: React.FC<ITextbox> = ({
   const hasAppend = React.Children.toArray(children).some(
     (child) => (child as any)?.type?.name === 'AmTextBoxAppendInner',
   );
-  console.log(hasPrepend);
   return (
     <TextboxContainer style={style} className={className}>
       <TextboxStyle

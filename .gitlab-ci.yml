@@ -1,0 +1,29 @@
+stages:
+  - build
+  - deploy
+
+# Build Storybook
+build-storybook:
+  stage: build
+  image: node:18 # Specify the node version used in your project
+  script:
+    - npm ci # Install dependencies
+    - npm run build-storybook # Build Storybook
+  artifacts:
+    paths:
+      - storybook-static/ # Save the built Storybook files as artifacts
+
+# Deploy to Heroku
+deploy-to-heroku:
+  stage: deploy
+  image: node:18 # You can change the Node version based on your setup
+  script:
+    - apt-get update -qy
+    - apt-get install -y curl git
+    - curl https://cli-assets.heroku.com/install.sh | sh # Install Heroku CLI
+    - heroku git:remote -a your-heroku-app-name # Add Heroku remote
+    - git remote -v
+    - echo "Deploying Storybook to Heroku..."
+    - git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/your-heroku-app-name.git HEAD:refs/heads/main # Deploy to Heroku
+  only:
+    - main # You can change this if you deploy from another branch

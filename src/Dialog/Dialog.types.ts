@@ -8,6 +8,7 @@ export interface IDialog extends React.PropsWithChildren {
   type?: string;
   zIndex?: number;
   onClose?: () => void;
+  className?: string;
 }
 
 export interface IDialogTitle extends React.PropsWithChildren {
@@ -18,4 +19,5 @@ export interface IDialogTitle extends React.PropsWithChildren {
 
 export interface IDialogContent extends IDialog {
   style?: React.CSSProperties;
+  className?: string;
 }
