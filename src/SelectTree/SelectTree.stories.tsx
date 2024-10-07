@@ -7,15 +7,15 @@ const meta = {
   component: SelectTree,
   argTypes: {
     data: {
-      description: 'Add child inside object array to have tree children'
+      description: 'Add child inside object array to have tree children',
     },
     text: {
-      description: 'Define text value from data object'
+      description: 'Define text value from data object',
     },
     id: {
-      description: 'Define key id from data object'
-    }
-  }
+      description: 'Define key id from data object',
+    },
+  },
 } satisfies Meta<typeof SelectTree>;
 
 export default meta;
@@ -26,18 +26,33 @@ export const Default: Story = {
   args: {
     placeholder: 'Pilih data',
     data: [
-      {id: 1, name: 'Data 1', child: [{
-        id: 3, name: 'Child 1',child: [{
-            id: 3, name: 'Grand Child 1'
-          },{
-            id: 3, name: 'Grand Child 2'
-          }]
-        },{
-          id: 3, name: 'Child 2'
-        }]},
-      {id: 2, name: 'Data 2'},
+      {
+        id: 1,
+        name: 'Data 1',
+        child: [
+          {
+            id: 3,
+            name: 'Child 1',
+            child: [
+              {
+                id: 3,
+                name: 'Grand Child 1',
+              },
+              {
+                id: 3,
+                name: 'Grand Child 2',
+              },
+            ],
+          },
+          {
+            id: 3,
+            name: 'Child 2',
+          },
+        ],
+      },
+      { id: 2, name: 'Data 2' },
     ],
     text: 'name',
-    id: 'id'
-  }
+    id: 'id',
+  },
 };

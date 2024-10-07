@@ -7,6 +7,9 @@ export interface ITextbox extends React.PropsWithChildren {
   onChange?: (e: any) => void;
   style?: React.CSSProperties;
   className?: string;
+  type?: React.HTMLInputTypeAttribute;
+  defaultValue?: string;
+  disabled?: boolean;
 }
 
 export interface ITextboxPrependInner extends React.PropsWithChildren {

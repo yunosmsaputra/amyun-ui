@@ -8,6 +8,7 @@ export interface ITable extends React.PropsWithChildren {
   isStickyColumn?: boolean;
   className?: string;
   onClickRow?: (row: any) => void;
+  horizontalScroll?: boolean;
   fixedHeader?: boolean;
   tableHeight?: number;
   withPagination?: boolean;
@@ -15,7 +16,17 @@ export interface ITable extends React.PropsWithChildren {
     totalData?: number;
     totalPages?: number;
     totalShowData?: number;
-  },
+  };
   onChangePage?: (page: number) => void;
   onChangeDataSize?: (size: number) => void;
+  withSearch?: boolean;
+  summarySearch?: {
+    placeholder?: string;
+    defaultSelected?: string;
+    listSearch?: any[];
+    popupWidth?: string;
+  };
+  onChangeOptionsFilter?: (selectedFilterOptions: any) => void;
+  onChangeSearch?: (search: string) => void;
+  onSearch?: () => void;
 }

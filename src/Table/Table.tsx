@@ -4,11 +4,21 @@ import Text from '../Text/Text';
 import Flex from '../Flex/Flex';
 import Icon from '../Icon/Icon';
 import '../index.css';
-import { TableContainer } from './Table.styles';
-import PaginationComponent from "../Pagination/Pagination";
-import {neutralColorLib} from "../color";
-import SelectBox from "../SelectBox/SelectBox";
-import Box from "../Box/Box";
+import {
+  TableContainer,
+  TableSearchInput,
+  TableSearchOptions,
+  TableSearchPopupListStyles,
+  TableSearchPopupStyles,
+  TableSearchStyles,
+  TableThStyle,
+} from './Table.styles';
+import PaginationComponent from '../Pagination/Pagination';
+import { blueColorLib, neutralColorLib } from '../color';
+import SelectBox from '../SelectBox/SelectBox';
+import Box from '../Box/Box';
+import TextComponent from '../Text/Text';
+import IconComponent from '../Icon/Icon';
 
 export const TableComponent: React.FC<ITable> = ({
   column,
@@ -19,12 +29,22 @@ export const TableComponent: React.FC<ITable> = ({
   isStickyColumn,
   onClickRow,
   fixedHeader = false,
+  horizontalScroll,
   tableHeight = 500,
   style,
   withPagination = false,
   summaryPagination,
   onChangePage,
-  onChangeDataSize
+  onChangeDataSize,
+  withSearch,
+  summarySearch = {
+    placeholder: 'Cari sesuatu',
+    defaultSelected: 'Semua',
+    popupWidth: '74px',
+  },
+  onChangeOptionsFilter,
+  onChangeSearch,
+  onSearch,
 }) => {
   const [sort, setSort] = useState<any>({
     key: '',
@@ -54,113 +74,207 @@ export const TableComponent: React.FC<ITable> = ({
   };
 
   const handleChangePage = (page: number) => {
-    onChangePage && onChangePage(page)
-  }
+    onChangePage && onChangePage(page);
+  };
 
   const handleChangeDataSize = (e: any) => {
-    onChangeDataSize && onChangeDataSize(e.target.value)
-  }
+    onChangeDataSize && onChangeDataSize(e.target.value);
+  };
+
+  const [showPopupFilter, setShowPopupFilter] = useState<boolean>(false);
+  const [selectedFilter, setSelectedFilter] = useState<any>();
+  const handleSelectedFilter = (value: any) => {
+    setSelectedFilter(value);
+    setShowPopupFilter(false);
+    onChangeOptionsFilter && onChangeOptionsFilter(value);
+  };
+  const handleChangeSearch = (e: any) => {
+    onChangeSearch && onChangeSearch(e.target.value);
+  };
+
+  const handleClickSearch = () => {
+    onSearch && onSearch();
+  };
 
   return (
     <>
-    <TableContainer
-      className={className}
-      $fixedHeader={fixedHeader}
-      $tableHeight={tableHeight}
-      style={style}
-    >
-      <table>
-        <thead>
-          <tr>
-            {column?.map((value, index) => (
-              <th
-                key={`index${index}`}
-                onClick={() => onSort(value)}
-                style={
-                  isStickyColumn
-                    ? {
-                        minWidth: value.width ? value.width : 0,
-                        position: value.sticky ? 'sticky' : 'unset',
-                        left: value.left ? value.left : 'unset',
-                        right: value.right ? value.right : 'unset',
-                      }
-                    : { width: value.width ? `${value.width}px` : 'auto' }
-                }
+      {withSearch && (
+        <div style={{ position: 'relative' }}>
+          <TableSearchStyles>
+            <TableSearchOptions
+              onClick={() => {
+                setShowPopupFilter(!showPopupFilter);
+              }}
+            >
+              <TextComponent
+                size={12}
+                weight={'semibold'}
+                color={neutralColorLib.black}
+                style={{ lineHeight: '16px' }}
               >
-                <Flex
-                  justifyContent={'space-between'}
-                  alignItems={'center'}
-                  className={'th-cell-text'}
+                {selectedFilter
+                  ? selectedFilter.value
+                  : summarySearch?.defaultSelected}
+              </TextComponent>
+              <IconComponent
+                name={'chevron-down'}
+                size={14}
+                color={neutralColorLib.textField}
+                style={{
+                  transform: `${showPopupFilter ? 'rotate(180deg)' : 'rotate(0deg)'}`,
+                }}
+              ></IconComponent>
+            </TableSearchOptions>
+            <TableSearchInput
+              placeholder={summarySearch?.placeholder}
+              onChange={handleChangeSearch}
+            ></TableSearchInput>
+            <IconComponent
+              name={'search'}
+              color={blueColorLib.main}
+              size={12}
+              style={{ padding: '10px 0 8px 0', cursor: 'pointer' }}
+              onClick={() => {
+                handleClickSearch();
+              }}
+            />
+          </TableSearchStyles>
+          {showPopupFilter && (
+            <TableSearchPopupStyles $popupWidth={summarySearch.popupWidth}>
+              {summarySearch?.listSearch?.map((value, index) => (
+                <TableSearchPopupListStyles
+                  key={`listPopupfilter${index}`}
+                  onClick={() => {
+                    handleSelectedFilter(value);
+                  }}
                 >
-                  <Text color="#5979A6" size={12} weight="semibold">
-                    {value.title}
-                  </Text>
-                  {value.sort ? (
-                    <Icon
-                      color="#333"
-                      name={`${value.key === sort.key ? (sort.type === 'asc' ? 'sorting-ascend' : 'sorting-descend') : 'sort-inactive'}`}
-                      size={14}
-                    ></Icon>
-                  ) : (
-                    <></>
-                  )}
-                </Flex>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {
-            //@ts-ignore
-            data?.length > 0 ? (
-              data?.map((value, index) => (
-                <tr key={`index-row-${index}`}>
-                  {column?.map((val, idx) => (
-                    <td
-                      key={`index-column-${idx}`}
-                      style={{
-                        position: val.sticky ? 'sticky' : 'unset',
-                        left: val.left ? val.left : 'unset',
-                        right: val.right ? val.right : 'unset',
-                      }}
-                      onClick={() => {
-                        val.clickRow && handleClickRow(value);
-                      }}
-                    >
-                      {val.render ? val.render(value) : value[val.key]}
-                    </td>
-                  ))}
+                  {value.value}
+                </TableSearchPopupListStyles>
+              ))}
+            </TableSearchPopupStyles>
+          )}
+        </div>
+      )}
+      <TableContainer
+        className={className}
+        $fixedHeader={fixedHeader}
+        $tableHeight={tableHeight}
+        $stickyColumn={isStickyColumn}
+        $horizontalScroll={horizontalScroll}
+        style={style}
+      >
+        <table>
+          <thead>
+            <tr>
+              {column?.map((value, index) => (
+                <TableThStyle
+                  $sticky={isStickyColumn}
+                  $horizontalScroll={horizontalScroll}
+                  $width={value.width ?? 0}
+                  $position={value.sticky ? 'sticky' : 'unset'}
+                  $left={value.left ?? 'unset'}
+                  $right={value.right ?? 'unset'}
+                  key={`index${index}`}
+                  onClick={() => onSort(value)}
+                >
+                  <Flex
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    className={'th-cell-text'}
+                  >
+                    <Text color="#5979A6" size={12} weight="semibold">
+                      {value.title}
+                    </Text>
+                    {value.sort ? (
+                      <Icon
+                        color="#333"
+                        name={`${value.key === sort.key ? (sort.type === 'asc' ? 'sorting-ascend' : 'sorting-descend') : 'sort-inactive'}`}
+                        size={14}
+                      ></Icon>
+                    ) : (
+                      <></>
+                    )}
+                  </Flex>
+                </TableThStyle>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              //@ts-ignore
+              data?.length > 0 ? (
+                data?.map((value, index) => (
+                  <tr key={`index-row-${index}`}>
+                    {column?.map((val, idx) => (
+                      <td
+                        key={`index-column-${idx}`}
+                        style={{
+                          position: val.sticky ? 'sticky' : 'unset',
+                          left: val.left ? val.left : 'unset',
+                          right: val.right ? val.right : 'unset',
+                        }}
+                        onClick={() => {
+                          val.clickRow && handleClickRow(value);
+                        }}
+                      >
+                        {val.render ? val.render(value) : value[val.key]}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={column?.length} className={'no-data'}>
+                    No Data to displayed
+                  </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={column?.length} className={'no-data'}>
-                  No Data to displayed
-                </td>
-              </tr>
-            )
-          }
-        </tbody>
-      </table>
-    </TableContainer>
+              )
+            }
+          </tbody>
+        </table>
+      </TableContainer>
       {withPagination && (
-        <Flex justifyContent={'space-between'} alignItems={'center'} style={{marginTop: '12px'}}>
+        <Flex
+          justifyContent={'space-between'}
+          alignItems={'center'}
+          style={{ marginTop: '12px' }}
+        >
           <Flex gap={6} alignItems={'center'}>
-            <Text size={12} color={neutralColorLib.black}>Menampilkan</Text>
+            <Text size={12} color={neutralColorLib.black}>
+              Menampilkan
+            </Text>
             {
               // @ts-ignore
-              (summaryPagination?.totalData > summaryPagination?.totalShowData) && (
-              <>
-                <Box width={56}>
-                  <SelectBox options={['10', '20', '25', '50', '100']} value={'10'} size={'sm'} onChange={handleChangeDataSize}></SelectBox>
-                </Box>
-                <Text size={12} color={neutralColorLib.black}>dari</Text>
-              </>
-            )}
-            <Text weight={'semibold'} size={12} color={neutralColorLib.black}>{summaryPagination?.totalData}</Text>
-            <Text size={12} color={neutralColorLib.black}>Data</Text>
+              summaryPagination?.totalData >
+                summaryPagination?.totalShowData && (
+                <>
+                  <Box width={56}>
+                    <SelectBox
+                      options={['10', '20', '25', '50', '100']}
+                      value={'10'}
+                      size={'sm'}
+                      onChange={handleChangeDataSize}
+                    ></SelectBox>
+                  </Box>
+                  <Text size={12} color={neutralColorLib.black}>
+                    dari
+                  </Text>
+                </>
+              )
+            }
+            <Text weight={'semibold'} size={12} color={neutralColorLib.black}>
+              {summaryPagination?.totalData}
+            </Text>
+            <Text size={12} color={neutralColorLib.black}>
+              Data
+            </Text>
           </Flex>
-          <PaginationComponent totalPage={summaryPagination?.totalPages} onChange={(page) => {handleChangePage(page)}}></PaginationComponent>
+          <PaginationComponent
+            totalPage={summaryPagination?.totalPages}
+            onChange={(page) => {
+              handleChangePage(page);
+            }}
+          ></PaginationComponent>
         </Flex>
       )}
     </>

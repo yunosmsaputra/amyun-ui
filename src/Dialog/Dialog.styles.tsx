@@ -33,9 +33,11 @@ export const DialogContainer = styled.div<{
   height: ${(props) =>
     props.$expandable
       ? 'calc(100vh - 24px)'
-      : props.$type === 'confirmation' ? '238px' : props.$height
-        ? `${props.$height}`
-        : 'unset'};
+      : props.$type === 'confirmation'
+        ? '238px'
+        : props.$height
+          ? `${props.$height}`
+          : 'unset'};
 `;
 
 export const DialogTitle = styled.div`

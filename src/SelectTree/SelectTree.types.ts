@@ -4,14 +4,14 @@ export interface ISelectTree extends React.PropsWithChildren {
   data?: any[];
   text?: string;
   id?: string;
-  onChange?: (value:any) => void;
+  onChange?: (value: any) => void;
   name?: string;
   className?: string;
-  }
+}
 
-  export interface IRecursiveComponent {
+export interface IRecursiveComponent {
   items: any;
   level: number;
   text: string;
   id: string;
-  }
+}

@@ -31,7 +31,7 @@ export { default as AmMonthPicker } from './MonthPicker/MonthPicker';
 export { default as AmNavbar } from './Navbar/Navbar';
 export { default as AmPagination } from './Pagination/Pagination';
 export { default as AmSelectbox } from './SelectBox/SelectBox';
-export { default as AmSelectTree} from './SelectTree/SelectTree';
+export { default as AmSelectTree } from './SelectTree/SelectTree';
 export {
   default as AmSidebar,
   AmSidebarMenu,
@@ -58,4 +58,8 @@ export {
 } from './Table/Table';
 export { default as AmText } from './Text/Text';
 export { default as AmTextarea } from './Textarea/Textarea';
-export { default as AmTextbox, AmTextBoxPrependInner } from './Textbox/Textbox';
+export {
+  default as AmTextbox,
+  AmTextBoxPrependInner,
+  AmTextBoxAppendInner,
+} from './Textbox/Textbox';

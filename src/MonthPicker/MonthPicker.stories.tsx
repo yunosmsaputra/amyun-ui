@@ -7,12 +7,12 @@ const meta = {
   component: MonthPicker,
   argTypes: {
     onChange: {
-      description: `return value is <b>{month: number, year: number}</b>`
+      description: `return value is <b>{month: number, year: number}</b>`,
     },
     value: {
-      description: `set value with <b>{month: number, year: number}</b>`
-    }
-  }
+      description: `set value with <b>{month: number, year: number}</b>`,
+    },
+  },
 } satisfies Meta<typeof MonthPicker>;
 
 export default meta;
@@ -22,6 +22,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: 'Pilih Bulan',
-    value: {month: 9, year: 2024}
-  }
+    value: { month: 9, year: 2024 },
+  },
 };

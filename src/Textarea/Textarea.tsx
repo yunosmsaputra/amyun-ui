@@ -10,6 +10,8 @@ const TextAreaComponent: React.FC<ITextarea> = ({
   style,
   onChange,
   className,
+  disabled,
+  defaultValue,
 }) => {
   return (
     <TextareaStyles
@@ -20,6 +22,9 @@ const TextAreaComponent: React.FC<ITextarea> = ({
       style={style}
       onChange={onChange}
       className={className}
+      disabled={disabled}
+      defaultValue={defaultValue}
+      $disabled={disabled}
     ></TextareaStyles>
   );
 };

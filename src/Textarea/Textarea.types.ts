@@ -8,4 +8,6 @@ export interface ITextarea {
   onChange?: (e: any) => void;
   style?: React.CSSProperties;
   className?: string;
+  disabled?: boolean;
+  defaultValue?: string;
 }

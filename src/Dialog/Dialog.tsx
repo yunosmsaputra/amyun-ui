@@ -22,7 +22,12 @@ export const DialogComponent: React.FC<IDialog> = ({
 }) => {
   return (
     <DialogStyles $isShow={isShow} $zIndex={zIndex}>
-      <DialogContainer $width={width} $expandable={expandable} $height={height} $type={type}>
+      <DialogContainer
+        $width={width}
+        $expandable={expandable}
+        $height={height}
+        $type={type}
+      >
         {React.Children.map(children, (child) => {
           return React.isValidElement(child)
             ? // @ts-ignore
