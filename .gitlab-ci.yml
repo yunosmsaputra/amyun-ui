@@ -24,4 +24,4 @@ deploy-to-heroku:
     - heroku git:remote -a amyun-ui # Add Heroku remote
     - git remote -v
     - echo "Deploying Storybook to Heroku..."
-    - git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/your-heroku-app-name.git HEAD:refs/heads/main # Deploy to Heroku
+    - git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/amyun-ui.git HEAD:refs/heads/main # Deploy to Heroku
