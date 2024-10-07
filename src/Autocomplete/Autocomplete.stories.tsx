@@ -82,3 +82,17 @@ export const Multiselect: Story = {
     multiSelect: true,
   },
 };
+
+
+
+export const ServerSide: Story = {
+  args: {
+    placeholder: 'Cari data',
+    data: [],
+    text: 'name',
+    id: 'id',
+    summaryNoData: 'Data tidak ditemukan',
+    isServerSide: true,
+    summaryBeforeLoad: 'Masukkan kata kunci ..'
+  },
+};

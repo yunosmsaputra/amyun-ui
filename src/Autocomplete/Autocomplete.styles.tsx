@@ -53,12 +53,19 @@ export const AutocompletePopupStyles = styled.div<{
   z-index: 20;
 `;
 
-export const AutocompleteListStyles = styled.div<{}>`
+export const AutocompleteListStyles = styled.div<{
+  $noHover?: boolean;
+}>`
   font-size: 12px;
   color: ${neutralColorLib.black};
   padding: 4px 12px;
-  &:hover {
+    ${(props) => !props.$noHover ? `
+      &:hover {
     background-color: ${blueColorLib.surface};
     cursor: pointer;
   }
+    ` : `
+      cursor: pointer;
+    `}
+  
 `;

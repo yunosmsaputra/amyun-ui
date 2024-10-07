@@ -3,6 +3,7 @@
 /.idea
 /public
 /.storybook
+/storybook-static
 
 tsconfig.json
 tsup.config.ts

@@ -6,8 +6,8 @@ import {
   AutocompletePopupStyles,
   AutocompleteStyles,
 } from './Autocomplete.styles';
-import React, { useEffect, useRef, useState } from 'react';
-import { IAutocomplete } from './Autocomplete.types';
+import React, {useEffect, useRef, useState} from 'react';
+import {IAutocomplete} from './Autocomplete.types';
 import TextBoxComponent from '../Textbox/Textbox';
 import IconComponent from '../Icon/Icon';
 
@@ -22,6 +22,8 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
   onChange,
   name,
   multiSelect = false,
+  isServerSide = false,
+  summaryBeforeLoad = 'Masukkan kategori pencarian'
 }) => {
   const [search, setSearch] = useState<string>('');
   const [selectedData, setSelectedData] = useState<any[]>([]);
@@ -99,6 +101,10 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
       onChange && onChange(params);
     }
   }, [selectedData]);
+  const handleChangeServerSide = (e: any) => {
+    setSearch(e.target.value);
+    onChange && onChange(e.target.value);
+  }
   return (
     <AutocompleteStyles
       className={className}
@@ -154,31 +160,58 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
           <TextBoxComponent
             placeholder={placeholder}
             value={search}
-            onChange={handleChange}
+            onChange={isServerSide ? handleChangeServerSide : handleChange}
           ></TextBoxComponent>
         </div>
       )}
       {showPopup && (
-        <AutocompletePopupStyles>
-          {
-            // @ts-ignore
-            filteredData.length > 0 ? (
-              <>
-                {filteredData?.map((value, index) => (
-                  <AutocompleteListStyles
-                    onClick={() => {
-                      handleSelect(value);
-                    }}
-                  >
-                    {value[text]}
-                  </AutocompleteListStyles>
-                ))}
-              </>
-            ) : (
-              <AutocompleteListStyles>{summaryNoData}</AutocompleteListStyles>
-            )
-          }
-        </AutocompletePopupStyles>
+        <>
+          {isServerSide ? (
+            <AutocompletePopupStyles>
+              {
+                // @ts-ignore
+                data.length > 0 ? (
+                  <>
+                    {data?.map((value, index) => (
+                      <AutocompleteListStyles
+                        onClick={() => {
+                          handleSelect(value);
+                        }}
+                        key={`indexAutoCompleteServerside${index}`}
+                      >
+                        {value[text]}
+                      </AutocompleteListStyles>
+                    ))}
+                  </>
+                ) : (
+                  <AutocompleteListStyles $noHover={true}>{search ? summaryNoData : summaryBeforeLoad}</AutocompleteListStyles>
+                )
+              }
+            </AutocompletePopupStyles>
+          ) : (
+            <AutocompletePopupStyles>
+              {
+                // @ts-ignore
+                filteredData.length > 0 ? (
+                  <>
+                    {filteredData?.map((value, index) => (
+                      <AutocompleteListStyles
+                        onClick={() => {
+                          handleSelect(value);
+                        }}
+                        key={`indexAutoComplete${index}`}
+                      >
+                        {value[text]}
+                      </AutocompleteListStyles>
+                    ))}
+                  </>
+                ) : (
+                  <AutocompleteListStyles>{summaryNoData}</AutocompleteListStyles>
+                )
+              }
+            </AutocompletePopupStyles>
+          )}
+        </>
       )}
     </AutocompleteStyles>
   );

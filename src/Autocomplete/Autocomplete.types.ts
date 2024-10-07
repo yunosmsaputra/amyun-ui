@@ -9,4 +9,6 @@ export interface IAutocomplete {
   onChange?: (value: any) => void;
   name?: string;
   multiSelect?: boolean;
+  isServerSide?: boolean;
+  summaryBeforeLoad?: string;
 }
