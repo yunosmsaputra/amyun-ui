@@ -6,7 +6,8 @@ export interface IAutocomplete {
   id?: string;
   text?: string;
   summaryNoData?: string;
-  onChange?: (value: any) => void;
+  onChange?: (value: string) => void;
+  onSelectedData?: (value: any) => void;
   name?: string;
   multiSelect?: boolean;
   isServerSide?: boolean;

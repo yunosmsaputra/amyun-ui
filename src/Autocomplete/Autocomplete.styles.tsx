@@ -59,13 +59,15 @@ export const AutocompleteListStyles = styled.div<{
   font-size: 12px;
   color: ${neutralColorLib.black};
   padding: 4px 12px;
-    ${(props) => !props.$noHover ? `
+  ${(props) =>
+    !props.$noHover
+      ? `
       &:hover {
     background-color: ${blueColorLib.surface};
     cursor: pointer;
   }
-    ` : `
+    `
+      : `
       cursor: pointer;
     `}
-  
 `;

@@ -5,6 +5,27 @@ import Autocomplete from './Autocomplete';
 const meta = {
   title: 'Form Component/Autocomplete',
   component: Autocomplete,
+  argTypes: {
+    isServerSide: {
+      description: 'Use it if want set data from serverside',
+    },
+    id: {
+      description: 'Deinition key id from data object',
+    },
+    text: {
+      description: 'For define text value in list and selected Data',
+    },
+    onSelectedData: {
+      description:
+        'Set value from selected data, it will return <b>target:{name: $name, value: $value}</b>',
+    },
+    onChange: {
+      description: 'Function to get value from type in autocomplete',
+    },
+    multiSelect: {
+      description: 'Set to <b>true</b> if want use multi select data',
+    },
+  },
 } satisfies Meta<typeof Autocomplete>;
 
 export default meta;
@@ -83,8 +104,6 @@ export const Multiselect: Story = {
   },
 };
 
-
-
 export const ServerSide: Story = {
   args: {
     placeholder: 'Cari data',
@@ -93,6 +112,6 @@ export const ServerSide: Story = {
     id: 'id',
     summaryNoData: 'Data tidak ditemukan',
     isServerSide: true,
-    summaryBeforeLoad: 'Masukkan kata kunci ..'
+    summaryBeforeLoad: 'Masukkan kata kunci ..',
   },
 };

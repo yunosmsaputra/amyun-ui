@@ -6,8 +6,8 @@ import {
   AutocompletePopupStyles,
   AutocompleteStyles,
 } from './Autocomplete.styles';
-import React, {useEffect, useRef, useState} from 'react';
-import {IAutocomplete} from './Autocomplete.types';
+import React, { useEffect, useRef, useState } from 'react';
+import { IAutocomplete } from './Autocomplete.types';
 import TextBoxComponent from '../Textbox/Textbox';
 import IconComponent from '../Icon/Icon';
 
@@ -23,7 +23,8 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
   name,
   multiSelect = false,
   isServerSide = false,
-  summaryBeforeLoad = 'Masukkan kategori pencarian'
+  summaryBeforeLoad = 'Masukkan kategori pencarian',
+  onSelectedData,
 }) => {
   const [search, setSearch] = useState<string>('');
   const [selectedData, setSelectedData] = useState<any[]>([]);
@@ -41,6 +42,7 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
   const handleChange = (e: any) => {
     setSearch(e.target.value);
     setShowPopup(true);
+    onChange && onChange(e.target.value);
   };
   const [showPopup, setShowPopup] = useState(false);
   const useClickOutside = (handler: any) => {
@@ -74,7 +76,7 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
           value: value,
         },
       };
-      onChange && onChange(params);
+      onSelectedData && onSelectedData(params);
       setSearch(value[text]);
     } else {
       setSelectedData((prevItems: any) => [...prevItems, value]);
@@ -98,13 +100,13 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
           value: selectedData,
         },
       };
-      onChange && onChange(params);
+      onSelectedData && onSelectedData(params);
     }
   }, [selectedData]);
   const handleChangeServerSide = (e: any) => {
     setSearch(e.target.value);
     onChange && onChange(e.target.value);
-  }
+  };
   return (
     <AutocompleteStyles
       className={className}
@@ -146,7 +148,7 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
           )}
           <AutocompleteMultiInputStyles
             type={'text'}
-            onChange={handleChange}
+            onChange={isServerSide ? handleChangeServerSide : handleChange}
             placeholder={placeholder}
             value={search}
           />
@@ -184,7 +186,9 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
                     ))}
                   </>
                 ) : (
-                  <AutocompleteListStyles $noHover={true}>{search ? summaryNoData : summaryBeforeLoad}</AutocompleteListStyles>
+                  <AutocompleteListStyles $noHover={true}>
+                    {search ? summaryNoData : summaryBeforeLoad}
+                  </AutocompleteListStyles>
                 )
               }
             </AutocompletePopupStyles>
@@ -206,7 +210,9 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
                     ))}
                   </>
                 ) : (
-                  <AutocompleteListStyles>{summaryNoData}</AutocompleteListStyles>
+                  <AutocompleteListStyles>
+                    {summaryNoData}
+                  </AutocompleteListStyles>
                 )
               }
             </AutocompletePopupStyles>
