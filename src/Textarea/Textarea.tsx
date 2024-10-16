@@ -17,7 +17,7 @@ const TextAreaComponent: React.FC<ITextarea> = ({
     <TextareaStyles
       rows={row}
       placeholder={placeholder}
-      value={value}
+      value={value ?? ''}
       name={name}
       style={style}
       onChange={onChange}

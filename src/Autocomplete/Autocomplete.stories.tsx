@@ -113,5 +113,19 @@ export const ServerSide: Story = {
     summaryNoData: 'Data tidak ditemukan',
     isServerSide: true,
     summaryBeforeLoad: 'Masukkan kata kunci ..',
+    value: { id: 3, name: 'Data 3' },
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    placeholder: 'Cari data',
+    data: [],
+    text: 'name',
+    id: 'id',
+    summaryNoData: 'Data tidak ditemukan',
+    isServerSide: true,
+    summaryBeforeLoad: 'Masukkan kata kunci ..',
+    disabled: true,
   },
 };

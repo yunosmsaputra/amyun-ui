@@ -15,9 +15,10 @@ export interface IDialogTitle extends React.PropsWithChildren {
   style?: React.CSSProperties;
   onClose?: () => void;
   className?: string;
+  withButtonEdit?: boolean;
+  onEdit?: () => void;
 }
 
 export interface IDialogContent extends IDialog {
   style?: React.CSSProperties;
-  className?: string;
 }

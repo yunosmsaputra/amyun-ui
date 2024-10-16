@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   DatePickerActions,
   DatePickerContainer,
@@ -6,10 +6,13 @@ import {
   DatePickerListDay,
   DatePickerPopup,
   DatePickerSelectbox,
+  DatePickerSelectBoxPopup,
+  DatePickerSelectBoxPopupList,
   DatePickerSelection,
   DatePickerSelectionButton,
   DatePickerSelectionButtonContainer,
   DatePickerSelectionMonthYear,
+  DatePickerSelectionMonthYearContainer,
   DatePickerStyle,
   DatePickerYearMonthInfo,
 } from './DatePicker.style';
@@ -26,6 +29,7 @@ const AmDatePicker: React.FC<IDatePicker> = ({
   onChange,
   style,
   className,
+  disabled,
 }) => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const [valueDate, setValue] = useState<string>('');
@@ -71,6 +75,11 @@ const AmDatePicker: React.FC<IDatePicker> = ({
     { length: endDate - startDate },
     (_, index) => startDate + index,
   );
+  const handleShowPopup = () => {
+    if (!disabled) {
+      setIsShow(!isShow);
+    }
+  };
   const addMonth = () => {
     setMonth(month > 10 ? 0 : month + 1);
     if (month > 10) {
@@ -101,12 +110,124 @@ const AmDatePicker: React.FC<IDatePicker> = ({
       onChange && onChange(params);
     }
   };
+  const useClickOutside = (handler: any) => {
+    const domNode = useRef();
+
+    useEffect(() => {
+      const maybeHandler = (event: any) => {
+        // @ts-ignore
+        if (!domNode.current.contains(event.target)) {
+          handler();
+        }
+      };
+
+      document.addEventListener('mousedown', maybeHandler);
+
+      return () => {
+        document.removeEventListener('mousedown', maybeHandler);
+      };
+    });
+
+    return domNode;
+  };
+  const domNode = useClickOutside(() => {
+    setIsShow(false);
+  });
+
+  const [onShowMonthPopup, setShowMonthPopup] = useState<boolean>(false);
+  const handleSelectMonthFromPopup = (index: number) => {
+    setMonth(index);
+    setShowMonthPopup(false);
+  };
+  const useClickOutsidePopupMonth = (handler: any) => {
+    const domNodeMonth = useRef();
+
+    useEffect(() => {
+      const maybeHandler = (event: any) => {
+        // @ts-ignore
+        if (!domNodeMonth.current.contains(event.target)) {
+          handler();
+        }
+      };
+
+      document.addEventListener('mousedown', maybeHandler);
+
+      return () => {
+        document.removeEventListener('mousedown', maybeHandler);
+      };
+    });
+
+    return domNodeMonth;
+  };
+  const domNodeMonth = useClickOutsidePopupMonth(() => {
+    setShowMonthPopup(false);
+  });
+
+  const [onShowYearPopup, setShowYearPopup] = useState<boolean>(false);
+  const handleSelectYearPopup = (index: number) => {
+    setYear(1900 + index);
+    setShowYearPopup(false);
+  };
+  const useClickOutsidePopupYear = (handler: any) => {
+    const domNodeYear = useRef();
+
+    useEffect(() => {
+      const maybeHandler = (event: any) => {
+        // @ts-ignore
+        if (!domNodeYear.current.contains(event.target)) {
+          handler();
+        }
+      };
+
+      document.addEventListener('mousedown', maybeHandler);
+
+      return () => {
+        document.removeEventListener('mousedown', maybeHandler);
+      };
+    });
+
+    return domNodeYear;
+  };
+  const domNodeYear = useClickOutsidePopupYear(() => {
+    setShowYearPopup(false);
+  });
+  const refPopupYear = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const container = refPopupYear.current;
+    if (container) {
+      container.scrollTop = 26 * (year - 1900) - 52;
+    }
+  }, [onShowYearPopup]);
+  useEffect(() => {
+    if (value) {
+      const dateValue = new Date(value);
+      setValue(
+        `${dateValue.getDate().toString()} ${listMonth[dateValue.getMonth()]} ${dateValue.getFullYear()}`,
+      );
+      setValueTemp(
+        new Date(
+          dateValue.getFullYear(),
+          dateValue.getMonth(),
+          dateValue.getDate(),
+        ),
+      );
+    } else {
+      setValue('');
+      setValueTemp(null);
+    }
+  }, [value]);
   return (
-    <DatePickerStyle style={style} className={className}>
+    <DatePickerStyle
+      style={style}
+      className={className}
+      //@ts-ignore
+      ref={domNode}
+    >
       <DatePickerContainer
         $noValue={!valueDate}
+        $disabled={disabled}
         onClick={() => {
-          setIsShow(!isShow);
+          handleShowPopup();
         }}
       >
         <TextComponent
@@ -141,35 +262,89 @@ const AmDatePicker: React.FC<IDatePicker> = ({
         </DatePickerYearMonthInfo>
         <DatePickerSelection>
           <DatePickerSelectionMonthYear>
-            <DatePickerSelectbox>
-              <TextComponent
-                size={12}
-                weight={'semibold'}
-                color={neutralColorLib.black}
+            <DatePickerSelectionMonthYearContainer
+              // @ts-ignore
+              ref={domNodeMonth}
+            >
+              <DatePickerSelectbox
+                onClick={() => {
+                  setShowMonthPopup(!onShowMonthPopup);
+                }}
               >
-                {listMonthShort[month]}
-              </TextComponent>
-              <IconComponent
-                name={'chevron-down'}
-                color={'blue'}
-                size={16}
-                style={{ marginTop: '2px' }}
-              ></IconComponent>
-            </DatePickerSelectbox>
-            <DatePickerSelectbox>
-              <TextComponent
-                size={12}
-                weight={'semibold'}
-                color={neutralColorLib.black}
+                <TextComponent
+                  size={12}
+                  weight={'semibold'}
+                  color={neutralColorLib.black}
+                >
+                  {listMonthShort[month]}
+                </TextComponent>
+                <IconComponent
+                  name={'chevron-down'}
+                  color={'blue'}
+                  size={16}
+                  style={{ marginTop: '2px' }}
+                ></IconComponent>
+              </DatePickerSelectbox>
+              {onShowMonthPopup && (
+                <DatePickerSelectBoxPopup>
+                  {listMonth.map((value, index) => (
+                    <DatePickerSelectBoxPopupList
+                      key={`monthSelection${index}`}
+                      $isActive={month === index}
+                      onClick={() => {
+                        handleSelectMonthFromPopup(index);
+                      }}
+                    >
+                      {value}
+                    </DatePickerSelectBoxPopupList>
+                  ))}
+                </DatePickerSelectBoxPopup>
+              )}
+            </DatePickerSelectionMonthYearContainer>
+            <DatePickerSelectionMonthYearContainer
+              // @ts-ignore
+              ref={domNodeYear}
+            >
+              <DatePickerSelectbox
+                onClick={() => {
+                  setShowYearPopup(!onShowYearPopup);
+                }}
               >
-                {year}
-              </TextComponent>
-              <IconComponent
-                name={'chevron-down'}
-                color={'blue'}
-                size={16}
-              ></IconComponent>
-            </DatePickerSelectbox>
+                <TextComponent
+                  size={12}
+                  weight={'semibold'}
+                  color={neutralColorLib.black}
+                >
+                  {year}
+                </TextComponent>
+                <IconComponent
+                  name={'chevron-down'}
+                  color={'blue'}
+                  size={16}
+                ></IconComponent>
+              </DatePickerSelectbox>
+              {onShowYearPopup && (
+                <DatePickerSelectBoxPopup
+                  //@ts-ignore
+                  ref={refPopupYear}
+                >
+                  {Array.from(
+                    { length: date.getFullYear() + 100 - 1900 + 1 },
+                    (_, i) => (
+                      <DatePickerSelectBoxPopupList
+                        $isActive={1900 + i === year}
+                        onClick={() => {
+                          handleSelectYearPopup(i);
+                        }}
+                        key={`indexYear${i}`}
+                      >
+                        {1900 + i}
+                      </DatePickerSelectBoxPopupList>
+                    ),
+                  )}
+                </DatePickerSelectBoxPopup>
+              )}
+            </DatePickerSelectionMonthYearContainer>
           </DatePickerSelectionMonthYear>
           <DatePickerSelectionButtonContainer>
             <DatePickerSelectionButton

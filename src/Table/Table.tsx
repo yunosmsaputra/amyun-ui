@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
-import { ITable } from './Table.types';
+import { ITable, ITableFooter } from './Table.types';
 import Text from '../Text/Text';
+import TextComponent from '../Text/Text';
 import Flex from '../Flex/Flex';
 import Icon from '../Icon/Icon';
+import IconComponent from '../Icon/Icon';
 import '../index.css';
 import {
   TableContainer,
+  TableFooterStyles,
   TableSearchInput,
   TableSearchOptions,
   TableSearchPopupListStyles,
   TableSearchPopupStyles,
   TableSearchStyles,
+  TableStyles,
   TableThStyle,
 } from './Table.styles';
 import PaginationComponent from '../Pagination/Pagination';
 import { blueColorLib, neutralColorLib } from '../color';
 import SelectBox from '../SelectBox/SelectBox';
 import Box from '../Box/Box';
-import TextComponent from '../Text/Text';
-import IconComponent from '../Icon/Icon';
 
 export const TableComponent: React.FC<ITable> = ({
   column,
@@ -95,9 +97,20 @@ export const TableComponent: React.FC<ITable> = ({
   const handleClickSearch = () => {
     onSearch && onSearch();
   };
+  const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onSearch && onSearch();
+    }
+  };
+  const childFooter = React.Children.toArray(children).every(
+    (child) =>
+      //@ts-ignore
+      React.isValidElement(child) && child.type.name === 'AmTableFooter',
+  );
+  console.log(childFooter);
 
   return (
-    <>
+    <TableStyles>
       {withSearch && (
         <div style={{ position: 'relative' }}>
           <TableSearchStyles>
@@ -128,6 +141,7 @@ export const TableComponent: React.FC<ITable> = ({
             <TableSearchInput
               placeholder={summarySearch?.placeholder}
               onChange={handleChangeSearch}
+              onKeyDown={handleKeypress}
             ></TableSearchInput>
             <IconComponent
               name={'search'}
@@ -231,6 +245,10 @@ export const TableComponent: React.FC<ITable> = ({
               )
             }
           </tbody>
+          {/*{*/}
+          {/*  //@ts-ignore*/}
+          {/*  React.Children.toArray(children).some((child) => React.isValidElement(child) && (child.type.displayName === 'AmTableFooter' || child.type.name === 'AmTableFooter')) && children}*/}
+          {childFooter && children}
         </table>
       </TableContainer>
       {withPagination && (
@@ -245,9 +263,7 @@ export const TableComponent: React.FC<ITable> = ({
             </Text>
             {
               // @ts-ignore
-              summaryPagination?.totalData >
-                // @ts-ignore
-                summaryPagination?.totalShowData && (
+              summaryPagination?.totalData > 10 && (
                 <>
                   <Box width={56}>
                     <SelectBox
@@ -271,6 +287,7 @@ export const TableComponent: React.FC<ITable> = ({
             </Text>
           </Flex>
           <PaginationComponent
+            activePage={summaryPagination?.page}
             totalPage={summaryPagination?.totalPages}
             onChange={(page) => {
               handleChangePage(page);
@@ -278,17 +295,27 @@ export const TableComponent: React.FC<ITable> = ({
           ></PaginationComponent>
         </Flex>
       )}
-    </>
+    </TableStyles>
   );
 };
 
 TableComponent.displayName = 'AmTable';
 export default TableComponent;
 
-export const NoDataComponent: React.FC<React.PropsWithChildren> = ({
+export const NoDataComponent: React.FC<ITableFooter> = ({
   children,
+  className,
 }) => {
-  return <div>{children}</div>;
+  return <div className={className}>{children}</div>;
+};
+
+export const AmTableFooter: React.FC<ITableFooter> = ({
+  children,
+  className,
+}) => {
+  return (
+    <TableFooterStyles className={className}>{children}</TableFooterStyles>
+  );
 };
 
 NoDataComponent.displayName = 'AmTableNoData';

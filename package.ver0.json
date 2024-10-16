@@ -1,6 +1,6 @@
 {
-  "name": "amyun-ui-link",
-  "version": "0.1.10",
+  "name": "amyun-ui",
+  "version": "0.0.152",
   "main": ".dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -71,7 +71,6 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "eslint-plugin-storybook": "^0.8.0",
-    "gh-pages": "^6.2.0",
     "husky": "^9.1.4",
     "prop-types": "^15.8.1",
     "sass": "^1.77.8",

@@ -56,3 +56,10 @@ export const Default: Story = {
     id: 'id',
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
+};

@@ -22,6 +22,7 @@ export {
 export { default as AmFileInput } from './FileInput/FileInput';
 export { default as AmFlex } from './Flex/Flex';
 export { default as AmIcon } from './Icon/Icon';
+export { default as AmLoading } from './Loading/Loading';
 export {
   default as AmMenuPopup,
   AmMenuPopupActivator,
@@ -45,6 +46,7 @@ export {
   AmSideBarMenuChild,
   AmSideBarMenuChildItem,
 } from './Sidebar/Sidebar';
+export { default as AmSwitchButton } from './SwitchButton/SwitchButton';
 export {
   default as AmTab,
   AmTabTitle,
@@ -55,6 +57,7 @@ export {
 export {
   default as AmTable,
   NoDataComponent as AmTableNoData,
+  AmTableFooter,
 } from './Table/Table';
 export { default as AmText } from './Text/Text';
 export { default as AmTextarea } from './Textarea/Textarea';

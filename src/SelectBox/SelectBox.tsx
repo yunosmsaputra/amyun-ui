@@ -7,6 +7,7 @@ import {
 } from './Selectbox.styles';
 import { ISelectBox } from './Selectbox.types';
 import Text from '../Text/Text';
+import { neutralColorLib } from '../color';
 
 const SelectBoxComponent: React.FC<ISelectBox> = ({
   size = 'md',
@@ -19,12 +20,20 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   onChange,
   style,
   className,
+  disabled,
+  id = 'id',
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [valueSelect, setValue] = useState<any>();
+  const [valueSelect, setValueSelect] = useState<any | null>(null);
+
+  const handleOpenPopup = () => {
+    if (!disabled) {
+      setIsOpen((prev) => !prev);
+    }
+  };
 
   const handleChange = (val: any) => {
-    setValue(val);
+    setValueSelect(val);
     setIsOpen(false);
     const params = {
       target: {
@@ -36,7 +45,11 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
   };
 
   useEffect(() => {
-    setValue(value);
+    if (value) {
+      setValueSelect(value);
+    } else {
+      setValueSelect('');
+    }
   }, [value]);
 
   const useClickOutside = (handler: any) => {
@@ -73,18 +86,36 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
       <SelectboxContainer
         $size={size}
         $open={isOpen}
-        onClick={() => setIsOpen((prev) => !prev)}
+        $disabled={disabled}
+        onClick={() => {
+          handleOpenPopup();
+        }}
       >
-        {valueSelect ? (
-          <Text color={'#333'} size={12}>
-            {typeof valueSelect === 'object'
-              ? //@ts-ignore
-                valueSelect[text]
-              : valueSelect}
-          </Text>
-        ) : (
+        {valueSelect === undefined ||
+        valueSelect === null ||
+        valueSelect === '' ? (
           <Text color={'#9C9C9C'} size={12}>
             {placeholder}
+          </Text>
+        ) : (
+          <Text
+            color={
+              typeof valueSelect === 'object'
+                ? valueSelect[id] === '' || valueSelect[id] === null
+                  ? neutralColorLib.textField
+                  : neutralColorLib.black
+                : neutralColorLib.black
+            }
+            size={12}
+          >
+            {typeof valueSelect === 'object'
+              ? valueSelect[id] === '' || valueSelect[id] === null
+                ? placeholder
+                : //@ts-ignore
+                  valueSelect[text]
+              : valueSelect
+                ? valueSelect
+                : placeholder}
           </Text>
         )}
       </SelectboxContainer>
@@ -93,7 +124,11 @@ const SelectBoxComponent: React.FC<ISelectBox> = ({
           options.map((value: any, index: number) => (
             <OptionBoxList
               $size={size}
-              $active={value === valueSelect}
+              $active={
+                valueSelect !== null && typeof valueSelect === 'object'
+                  ? value[id] === valueSelect[id]
+                  : value === valueSelect
+              }
               onClick={() => {
                 handleChange(value);
               }}

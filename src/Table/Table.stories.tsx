@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TableComponent, NoDataComponent } from './Table';
+import { TableComponent, NoDataComponent, AmTableFooter } from './Table';
 import React from 'react';
 import Button from '../Button/Button';
 import Text from '../Text/Text';
@@ -513,6 +513,26 @@ export const WithSearch: Story = {
         name: 'Data 0004',
         description: 'Description for data 0004',
       },
+    ],
+  },
+};
+
+export const WithFooter: Story = {
+  args: {
+    ...Default.args,
+    children: [
+      <tfoot>
+        <tr>
+          <th colSpan={2}>Total</th>
+          <th>20.000</th>
+        </tr>
+      </tfoot>,
+      <AmTableFooter>
+        <tr>
+          <th colSpan={2}>Total</th>
+          <th>20.000</th>
+        </tr>
+      </AmTableFooter>,
     ],
   },
 };

@@ -2,13 +2,13 @@ import React from 'react';
 
 export interface ITextbox extends React.PropsWithChildren {
   placeholder?: string;
-  value?: string;
+  value?: string | readonly string[] | number | undefined;
   name?: string;
   onChange?: (e: any) => void;
   style?: React.CSSProperties;
   className?: string;
   type?: React.HTMLInputTypeAttribute;
-  defaultValue?: string | number | readonly string[] | undefined;
+  defaultValue?: string | readonly string[] | number | undefined;
   disabled?: boolean;
 }
 

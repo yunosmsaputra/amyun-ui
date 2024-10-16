@@ -22,6 +22,13 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: 'Pilih Bulan',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    placeholder: 'Pilih Bulan',
     value: { month: 9, year: 2024 },
+    disabled: true,
   },
 };

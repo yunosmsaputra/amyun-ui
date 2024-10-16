@@ -10,10 +10,6 @@ export interface IButton extends React.PropsWithChildren {
   iconColor?: string;
   btnIcon?: string;
   disabled?: boolean;
-  popup?: boolean;
-  popupWidth?: number;
-  popupActionList?: any[];
-  popupPosition?: string;
   onClick?: () => void;
   style?: React.CSSProperties;
   className?: string;

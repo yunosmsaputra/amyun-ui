@@ -7,6 +7,7 @@ export const DatePickerStyle = styled.div`
 
 export const DatePickerContainer = styled.div<{
   $noValue: boolean;
+  $disabled?: boolean;
 }>`
   border: 1px solid ${neutralColorLib.stroke};
   font-size: 12px;
@@ -19,6 +20,8 @@ export const DatePickerContainer = styled.div<{
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  background-color: ${(props) =>
+    props.$disabled ? neutralColorLib.disbled : neutralColorLib.white};
 `;
 
 export const DatePickerPopup = styled.div<{
@@ -52,12 +55,49 @@ export const DatePickerSelectionMonthYear = styled.div`
   gap: 16px;
 `;
 
+export const DatePickerSelectionMonthYearContainer = styled.div`
+  position: relative;
+`;
+
 export const DatePickerSelectbox = styled.div`
   color: ${neutralColorLib.black};
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  cursor: pointer;
+`;
+
+export const DatePickerSelectBoxPopup = styled.div`
+  background: ${neutralColorLib.white};
+  border: 1px solid ${neutralColorLib.stroke};
+  z-index: 11;
+  position: absolute;
+  top: 24px;
+  border-radius: 8px;
+  width: 106px;
+  max-height: 130px;
+  overflow-y: auto;
+`;
+export const DatePickerSelectBoxPopupList = styled.div<{
+  $isActive: boolean;
+}>`
+  font-size: 12px;
+  color: ${neutralColorLib.black};
+  padding: 4px 6px;
+  background: ${(props) =>
+    props.$isActive ? blueColorLib.main : neutralColorLib.white};
+  color: ${(props) =>
+    props.$isActive ? neutralColorLib.white : neutralColorLib.black};
+  font-weight: ${(props) => (props.$isActive ? '600' : 'normal')};
+  &:hover {
+    background: ${(props) =>
+      props.$isActive ? blueColorLib.main : blueColorLib.surface};
+    cursor: pointer;
+    color: ${(props) =>
+      props.$isActive ? neutralColorLib.white : blueColorLib.main};
+    font-weight: 600;
+  }
 `;
 
 export const DatePickerSelectionButtonContainer = styled.div`

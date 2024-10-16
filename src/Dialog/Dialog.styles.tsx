@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { neutralColorLib } from '../color';
 
 export const DialogStyles = styled.div<{
   additionalClass?: string;
@@ -54,6 +55,19 @@ export const DialogClose = styled.div`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const DialogButtonEdit = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: ${neutralColorLib.textDisabled};
+  font-weight: 600;
+  border: 1px solid ${neutralColorLib.stroke};
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 16px;
 `;
 
 export const DialogContent = styled.div<{

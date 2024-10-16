@@ -13,6 +13,7 @@ export interface ITable extends React.PropsWithChildren {
   tableHeight?: number;
   withPagination?: boolean;
   summaryPagination?: {
+    page?: number;
     totalData?: number;
     totalPages?: number;
     totalShowData?: number;
@@ -29,4 +30,8 @@ export interface ITable extends React.PropsWithChildren {
   onChangeOptionsFilter?: (selectedFilterOptions: any) => void;
   onChangeSearch?: (search: string) => void;
   onSearch?: () => void;
+}
+
+export interface ITableFooter extends React.PropsWithChildren {
+  className?: string;
 }

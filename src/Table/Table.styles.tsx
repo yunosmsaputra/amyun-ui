@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { blueColorLib, neutralColorLib } from '../color';
 
+export const TableStyles = styled.div`
+  position: relative;
+`;
+
 export const TableContainer = styled.div<{
   $fixedHeader?: boolean;
   $tableHeight?: number;
@@ -25,6 +29,7 @@ export const TableContainer = styled.div<{
       top: ${(props) => (props.$fixedHeader ? '0' : 'unset')};
       border-bottom: 2px solid #f0f3f7;
       background: #ffffff;
+      z-index: 2;
       th {
         padding: 16px 12px;
         & .th-cell-text {
@@ -49,6 +54,7 @@ export const TableContainer = styled.div<{
           font-size: 12px;
           color: #333;
           background: #ffffff;
+          vertical-align: baseline;
           &.no-data {
             font-size: 14px;
             font-width: 600;
@@ -86,13 +92,14 @@ export const TableThStyle = styled.th<{
   $sticky?: boolean;
   $horizontalScroll?: boolean;
 }>`
-  ${(props) =>
-    props.$sticky || props.$horizontalScroll
-      ? `
-      min-width: ${props.$width}px;
-    `
-      : `
-    width: ${props.$width}px`}
+  min-width: ${(props) =>
+    props.$sticky || props.$horizontalScroll ? `${props.$width}px` : 'unset'};
+  width: ${(props) =>
+    !props.$sticky && !props.$horizontalScroll
+      ? props.$width
+        ? `${props.$width}px`
+        : 'auto'
+      : 'auto'};
   position: ${(props) => props.$position};
   left: ${(props) => props.$left};
   right: ${(props) => props.$right};
@@ -128,7 +135,7 @@ export const TableSearchInput = styled.input`
   line-height: 16px;
   border-bottom-right-radius: 6px;
   border-top-right-radius: 6px;
-  width: 106px;
+  width: 156px;
 `;
 
 export const TableSearchPopupStyles = styled.div<{
@@ -157,5 +164,15 @@ export const TableSearchPopupListStyles = styled.div`
   &:hover {
     background-color: ${blueColorLib.surface};
     cursor: pointer;
+  }
+`;
+
+export const TableFooterStyles = styled.tfoot`
+  border-top: 1px solid ${neutralColorLib.stroke};
+  th {
+    padding: 16px 12px;
+  }
+  td {
+    padding: 16px 12px;
   }
 `;

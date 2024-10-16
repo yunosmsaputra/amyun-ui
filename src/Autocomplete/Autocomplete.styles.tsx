@@ -8,6 +8,7 @@ export const AutocompleteStyles = styled.div`
 export const AutocompleteMultiStyles = styled.div<{
   $isFocused?: boolean;
   $isEmpty?: boolean;
+  $disabled?: boolean;
 }>`
   display: flex;
   gap: 6px;
@@ -18,6 +19,8 @@ export const AutocompleteMultiStyles = styled.div<{
   border: 1px solid
     ${(props) =>
       props.$isFocused ? blueColorLib.border : neutralColorLib.stroke};
+  background-color: ${(props) =>
+    props.$disabled ? neutralColorLib.disbled : neutralColorLib.white};
 `;
 
 export const AutocompleteMultiInputStyles = styled.input`

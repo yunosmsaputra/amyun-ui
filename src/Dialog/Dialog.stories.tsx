@@ -33,6 +33,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     width: '540px',
+    onClose: () => {},
     children: [
       <AmDialogTitle>
         <AmText size={20} weight={'semibold'}>
@@ -57,6 +58,7 @@ export const Default: Story = {
 export const Expandable: Story = {
   args: {
     width: '540px',
+    onClose: () => {},
     children: [
       <AmDialogTitle>
         <AmText size={20} weight={'semibold'}>
@@ -102,5 +104,30 @@ export const Confirmation: Story = {
         </AmButton>
       </AmDialogActions>,
     ],
+  },
+};
+
+export const WithButtonEdit: Story = {
+  args: {
+    width: '540px',
+    onClose: () => {},
+    children: [
+      <AmDialogTitle withButtonEdit onEdit={() => {}}>
+        <AmText size={20} weight={'semibold'}>
+          Dialog Title
+        </AmText>
+      </AmDialogTitle>,
+      <AmDialogContent>
+        <AmText size={16} color={'#333'}>
+          Dialog Content
+        </AmText>
+      </AmDialogContent>,
+      <AmDialogActions>
+        <AmButton color={'blue'} type={'fill'}>
+          Simpan
+        </AmButton>
+      </AmDialogActions>,
+    ],
+    isShow: true,
   },
 };

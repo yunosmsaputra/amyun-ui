@@ -17,11 +17,13 @@ import { ButtonComponent } from '../Button';
 
 const MonthPickerComponent: React.FC<IMonthPicker> = ({
   className,
-  placeholder,
+  placeholder = 'Pilih Bulan',
   value,
   name,
   disabled,
   onChange,
+  position = 'bottom-right',
+  format = 'full',
 }) => {
   const date = new Date();
   const [year, setYear] = useState<number>(date.getFullYear());
@@ -55,7 +57,12 @@ const MonthPickerComponent: React.FC<IMonthPicker> = ({
   ];
   const [selectedMonth, setSelectedMonth] = useState<string>();
   const [showPopup, setShowPopup] = useState(false);
-  const [valueMonth, setValueMonth] = useState<any>();
+  const [valueMonth, setValueMonth] = useState<any | undefined>(undefined);
+  const handleOpenPopup = () => {
+    if (!disabled) {
+      setShowPopup(!showPopup);
+    }
+  };
   const handleSelectMonth = () => {
     if (selectedMonth) {
       const params = {
@@ -63,21 +70,30 @@ const MonthPickerComponent: React.FC<IMonthPicker> = ({
           name: name,
           value: {
             year: year,
-            month: parseInt(selectedMonth.split('-')[1]) + 1,
+            month: parseInt(selectedMonth.split('-')[1]),
           },
         },
       };
       onChange && onChange(params);
       setValueMonth(
-        `${listYearFull[parseInt(selectedMonth.split('-')[1])]} ${year}`,
+        format === 'full'
+          ? `${listYearFull[parseInt(selectedMonth.split('-')[1])]} ${year}`
+          : `${listYear[parseInt(selectedMonth.split('-')[1])]} ${year}`,
       );
       setShowPopup(false);
     }
   };
   useEffect(() => {
     if (value) {
-      setValueMonth(`${listYearFull[value.month]} ${value.year}`);
+      setValueMonth(
+        format === 'full'
+          ? `${listYearFull[value.month]} ${value.year}`
+          : `${listYear[value.month]} ${value.year}`,
+      );
       setSelectedMonth(`${value.year}-${value.month}`);
+    } else {
+      setValueMonth(undefined);
+      setSelectedMonth('');
     }
   }, [value]);
   const useClickOutside = (handler: any) => {
@@ -114,18 +130,18 @@ const MonthPickerComponent: React.FC<IMonthPicker> = ({
         $disabled={disabled}
         $onFocused={showPopup}
         onClick={() => {
-          setShowPopup(!showPopup);
+          handleOpenPopup();
         }}
       >
-        {valueMonth ?? placeholder}
         <IconComponent
           name={'calendar'}
           size={12}
           color={'#2671d9'}
         ></IconComponent>
+        {valueMonth ?? placeholder}
       </MonthPickerContainerStyles>
       {showPopup && (
-        <MonthPickerPopupStyles>
+        <MonthPickerPopupStyles $position={position}>
           <MonthPickerPoupTitleStyles>
             {year}
             <MonthPickerPopupSelectionContainerStyles>
@@ -159,7 +175,7 @@ const MonthPickerComponent: React.FC<IMonthPicker> = ({
                 $active={selectedMonth === `${year}-${index}`}
                 $monthNow={
                   `${year}${index}` ===
-                  `${date.getFullYear()}${date.getMonth() - 1}`
+                  `${date.getFullYear()}${date.getMonth()}`
                 }
                 key={`monthLIst${index}`}
                 onClick={() => {

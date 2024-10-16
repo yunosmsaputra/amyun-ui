@@ -9,7 +9,7 @@ const preview = {
     },
     docs: {
       controls: {
-        exclude: ['style', 'className', 'ref', 'name' ]
+        exclude: ['style', 'className', 'ref', 'name', 'disabled' ]
       }
     }
   },

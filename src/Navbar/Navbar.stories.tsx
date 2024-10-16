@@ -30,20 +30,7 @@ export const Default: Story = {
         nodes={['Dashboard', 'Detail']}
         key={'breadcrumb'}
       />,
-      <AmButton
-        type={'nude'}
-        key={'button'}
-        popup
-        popupActionList={[
-          <AmText
-            onClick={() => {
-              console.log('logout');
-            }}
-          >
-            Logout
-          </AmText>,
-        ]}
-      >
+      <AmButton type={'nude'} key={'button'}>
         <AmFlex alignItems={'center'} gap={8}>
           <AmAvatar size={'medium'} color={'#C7E5D7'} style={{ color: '#333' }}>
             JD

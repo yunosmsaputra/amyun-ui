@@ -1,5 +1,5 @@
 export interface IAutocomplete {
-  value?: any;
+  value?: any | undefined | null;
   placeholder?: string;
   data?: any[];
   className?: string;
@@ -12,4 +12,5 @@ export interface IAutocomplete {
   multiSelect?: boolean;
   isServerSide?: boolean;
   summaryBeforeLoad?: string;
+  disabled?: boolean;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   DialogActions,
+  DialogButtonEdit,
   DialogClose,
   DialogContainer,
   DialogContent,
@@ -9,6 +10,8 @@ import {
 } from './Dialog.styles';
 import { IDialog, IDialogContent, IDialogTitle } from './Dialog.types';
 import FlexComponent from '../Flex/Flex';
+import { blueColorLib } from '../color';
+import IconComponent from '../Icon/Icon';
 
 export const DialogComponent: React.FC<IDialog> = ({
   width = '540px',
@@ -48,6 +51,8 @@ export const AmDialogTitle: React.FC<IDialogTitle> = ({
   style,
   onClose,
   className,
+  withButtonEdit,
+  onEdit,
 }) => {
   const [isOpenDialog, setIsOpenDialog] = useState<IDialog>({
     isShow: false,
@@ -60,11 +65,30 @@ export const AmDialogTitle: React.FC<IDialogTitle> = ({
     setIsOpenDialog(newParam);
     onClose && onClose();
   };
+  const handleEdit = () => {
+    onEdit && onEdit();
+  };
   return (
     <DialogTitle style={style} className={className}>
       <FlexComponent justifyContent={'space-between'} alignItems={'center'}>
         {children}
-        <DialogClose onClick={() => handleOnClose()} />
+        <FlexComponent alignItems={'center'} gap={6}>
+          {withButtonEdit && (
+            <DialogButtonEdit
+              onClick={() => {
+                handleEdit();
+              }}
+            >
+              <IconComponent
+                name={'edit-outline'}
+                size={12}
+                color={blueColorLib.main}
+              ></IconComponent>
+              Edit
+            </DialogButtonEdit>
+          )}
+          <DialogClose onClick={() => handleOnClose()} />
+        </FlexComponent>
       </FlexComponent>
     </DialogTitle>
   );

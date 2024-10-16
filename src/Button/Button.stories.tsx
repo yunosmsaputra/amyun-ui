@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ButtonComponent } from './index';
-import { AmFlex, AmIcon, AmText } from '../index';
-import React from 'react';
-import { blueColorLib } from '../color';
 
 const meta = {
   title: 'Form Component/Button',
@@ -60,22 +57,6 @@ const meta = {
       description:
         'Set for use Button type icon <br/>just write name icon base on AmIcon Component',
     },
-    popup: {
-      description: 'Set <b>True</b> if want use button with popup',
-    },
-    popupPosition: {
-      description: 'Position popup - float by button position',
-      control: 'radio',
-      options: ['left', 'right'],
-    },
-    popupWidth: {
-      description:
-        'Define if want to custom width of popup button container<br/>Set by default by width of button',
-    },
-    popupActionList: {
-      description:
-        'Popup list actions button<br/>Use Component to list action popup button',
-    },
   },
 } satisfies Meta<typeof ButtonComponent>;
 
@@ -105,43 +86,5 @@ export const IconButton: Story = {
     btnIcon: 'three-dot',
     iconColor: '#9C9C9C',
     iconSize: 12,
-  },
-};
-
-export const WithPopup: Story = {
-  args: {
-    type: 'fill',
-    color: 'blue',
-    children: [
-      <AmText weight={'semibold'} color={'#FFF'} key={`text`}>
-        Button Popup
-      </AmText>,
-    ],
-    appendIcon: 'plus',
-    popup: true,
-    popupActionList: [
-      <AmFlex
-        justifyContent={'space-between'}
-        alignItems={'center'}
-        onClick={() => {
-          console.log('Popup 1');
-        }}
-      >
-        <AmText size={12}>Popup 1</AmText>
-        <AmIcon size={12} color={blueColorLib.main} name="plus"></AmIcon>
-      </AmFlex>,
-      <AmFlex
-        justifyContent={'space-between'}
-        alignItems={'center'}
-        onClick={() => {
-          console.log('Popup 2');
-        }}
-      >
-        <AmText size={12}>Popup 2</AmText>
-        <AmIcon size={12} color={blueColorLib.main} name="plus"></AmIcon>
-      </AmFlex>,
-    ],
-    popupWidth: 200,
-    popupPosition: 'left',
   },
 };

@@ -17,6 +17,7 @@ const meta = {
     },
     value: {
       description: 'Textbox value',
+      control: 'text',
     },
     name: {
       description: 'Textbox name index',

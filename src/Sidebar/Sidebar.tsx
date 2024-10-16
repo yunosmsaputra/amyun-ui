@@ -108,7 +108,6 @@ export const AmSidebarMenu: React.FC<ISidebarMenu> = ({
   const [onMenuItemHover, setOnMenuItemHover] = useState<boolean>(false);
   const [isActiveMenu, setOnIsActiveMenu] = useState<boolean>(false);
   const [openChild, setOpenChild] = useState<boolean>(false);
-  const childrenArray = React.Children.toArray(children);
   const onMouseEnter = () => {
     setOnMenuItemHover(true);
   };

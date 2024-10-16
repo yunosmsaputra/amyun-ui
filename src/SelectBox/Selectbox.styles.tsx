@@ -10,13 +10,15 @@ export const SelectBoxStyles = styled.div<{
 export const SelectboxContainer = styled.div<{
   $size: string;
   $open: boolean;
+  $disabled?: boolean;
 }>`
   border: 1px solid
     ${(props) => (props.$open ? blueColorLib.border : neutralColorLib.stroke)};
   padding: ${(props) =>
     props.$size === 'md' ? '8px 10px 8px 12px' : '4px 6px 4px 8px'};
-  border-radius: 8px;
-  background-color: #ffffff;
+  border-radius: 6px;
+  background-color: ${(props) =>
+    props.$disabled ? neutralColorLib.disbled : neutralColorLib.white};
   line-height: 16px;
 
   &::after {

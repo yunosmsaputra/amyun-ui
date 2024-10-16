@@ -5,4 +5,5 @@ export interface IDatePicker {
   onChange?: (value: any) => void;
   style?: React.CSSProperties;
   className?: string;
+  disabled?: boolean;
 }

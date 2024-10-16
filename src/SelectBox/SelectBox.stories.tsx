@@ -33,6 +33,10 @@ const meta = {
       description:
         'To define text display in options list, use it if options are <b>Object</b>',
     },
+    id: {
+      description:
+        'To define id / key in options list, use it if options are <b>Object</b>',
+    },
     style: {
       table: { disable: true },
     },
@@ -63,9 +67,21 @@ export const OptionsObject: Story = {
       { value: 'Option2', text: 'Option 2' },
     ],
     position: 'bottom',
-    value: 'Option 1',
+    value: { value: null, text: null },
     text: 'text',
+    id: 'value',
     size: 'md',
     name: 'options',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    options: ['Option 1', 'Option 2', 'Option 3'],
+    position: 'bottom',
+    value: 'Option 1',
+    size: 'md',
+    name: 'options',
+    disabled: true,
   },
 };

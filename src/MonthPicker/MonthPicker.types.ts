@@ -5,4 +5,6 @@ export interface IMonthPicker {
   name?: string;
   disabled?: boolean;
   onChange?: (value: any) => void;
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  format?: 'full' | 'short';
 }

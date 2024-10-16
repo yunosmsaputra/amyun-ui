@@ -7,6 +7,7 @@ export const SelectTreeStyles = styled.div`
 
 export const SelectTreeContainerStyles = styled.div<{
   $isFocused?: boolean;
+  $disabled?: boolean;
 }>`
   width: 100%;
   padding: 8px 10px 8px 12px;
@@ -15,6 +16,8 @@ export const SelectTreeContainerStyles = styled.div<{
       props.$isFocused ? blueColorLib.border : neutralColorLib.stroke};
   border-radius: 6px;
   line-height: 16px;
+  background-color: ${(props) =>
+    props.$disabled ? neutralColorLib.disbled : neutralColorLib.white};
 `;
 
 export const SelectTreePoupStyles = styled.div`

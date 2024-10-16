@@ -7,6 +7,7 @@ export interface ISelectTree extends React.PropsWithChildren {
   onChange?: (value: any) => void;
   name?: string;
   className?: string;
+  disabled?: boolean;
 }
 
 export interface IRecursiveComponent {

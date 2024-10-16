@@ -1,17 +1,15 @@
 import {
   SelectTreeContainerStyles,
   SelectTreePopupListStyles,
-  SelectTreePopupListStylesChild,
   SelectTreePoupStyles,
   SelectTreeStyles,
 } from './SelectTree.styles';
 import React, { useEffect, useRef, useState } from 'react';
-import { IRecursiveComponent, ISelectTree } from './SelectTree.types';
+import { ISelectTree } from './SelectTree.types';
 import Text from '../Text/Text';
 import { blueColorLib, neutralColorLib } from '../color';
 import Flex from '../Flex/Flex';
 import IconComponent from '../Icon/Icon';
-import { type } from '@testing-library/user-event/dist/type';
 
 const SelectTreeComponent: React.FC<ISelectTree> = ({
   placeholder,
@@ -22,12 +20,15 @@ const SelectTreeComponent: React.FC<ISelectTree> = ({
   onChange,
   name,
   className,
+  disabled,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [openItems, setOpenItems] = useState<any[]>([]);
   const [valueTree, setValueTree] = useState<any>();
   const handleClick = () => {
-    setShowPopup(!showPopup);
+    if (!disabled) {
+      setShowPopup(!showPopup);
+    }
   };
   const handleClickTree = (value: any) => {
     handleSelectTree(value);
@@ -131,6 +132,7 @@ const SelectTreeComponent: React.FC<ISelectTree> = ({
     >
       <SelectTreeContainerStyles
         $isFocused={showPopup}
+        $disabled={disabled}
         onClick={() => {
           handleClick();
         }}

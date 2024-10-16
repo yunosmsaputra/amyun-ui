@@ -24,18 +24,30 @@ export const MonthPickerContainerStyles = styled.div<{
     props.$emptyValue ? neutralColorLib.textField : neutralColorLib.black};
   background-color: ${(props) =>
     props.$disabled ? neutralColorLib.disbled : neutralColorLib.white};
-  cursor: pointer;
+  cursor: ${(props) => (props.$disabled ? 'default' : 'pointer')};
 `;
 
-export const MonthPickerPopupStyles = styled.div`
+export const MonthPickerPopupStyles = styled.div<{
+  $position?: string;
+}>`
   z-index: 20;
   position: absolute;
-  top: 38px;
   width: 306px;
   background-color: ${neutralColorLib.white};
   border: 1px solid ${neutralColorLib.stroke};
   border-radius: 8px;
-  left: 0;
+  ${(props) =>
+    (props.$position === 'top-left' || props.$position === 'bottom-left') &&
+    `
+  bottom: 38px;
+      left: 0;
+    `};
+  ${(props) =>
+    (props.$position === 'top-right' || props.$position === 'bottom-right') &&
+    `
+  top: 38px;
+      right: 0;
+    `};
   box-shadow: 0 12px 19px 0 rgba(143, 143, 143, 0.32);
 `;
 

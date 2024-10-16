@@ -25,20 +25,34 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
   isServerSide = false,
   summaryBeforeLoad = 'Masukkan kategori pencarian',
   onSelectedData,
+  disabled,
 }) => {
-  const [search, setSearch] = useState<string>('');
+  const [search, setSearch] = useState<string>();
   const [selectedData, setSelectedData] = useState<any[]>([]);
   const filteredData = multiSelect
-    ? data
-        ?.filter((item) =>
-          item[text].toLowerCase().includes(search.toLowerCase()),
+    ? selectedData.length > 0
+      ? search && search !== ''
+        ? data
+            ?.filter((item) =>
+              item[text]?.toLowerCase().includes(search?.toLowerCase()),
+            )
+            .filter(
+              (item) =>
+                !selectedData.some((exclude) => exclude[id] === item[id]),
+            )
+        : data?.filter(
+            (item) => !selectedData.some((exclude) => exclude[id] === item[id]),
+          )
+      : search && search !== ''
+        ? data?.filter((item) =>
+            item[text]?.toLowerCase().includes(search?.toLowerCase()),
+          )
+        : data
+    : search && search !== ''
+      ? data?.filter((item) =>
+          item[text]?.toLowerCase().includes(search?.toLowerCase()),
         )
-        .filter(
-          (item) => !selectedData.some((exclude) => exclude[id] === item[id]),
-        )
-    : data?.filter((item) =>
-        item[text].toLowerCase().includes(search.toLowerCase()),
-      );
+      : data;
   const handleChange = (e: any) => {
     setSearch(e.target.value);
     setShowPopup(true);
@@ -66,6 +80,13 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
     return domNode;
   };
   const domNode = useClickOutside(() => {
+    if (multiSelect) {
+      setSearch('');
+    } else {
+      if (filteredData?.length === 0) {
+        setSearch('');
+      }
+    }
     setShowPopup(false);
   });
   const handleSelect = (value: any) => {
@@ -87,11 +108,23 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
   const deleteSelectedData = (index: number) => {
     setSelectedData((prevState) => prevState.filter((_, idx) => idx !== index));
   };
+  const onShowPopupServerSide = () => {
+    setShowPopup(true);
+    onChange && onChange(search ?? '');
+  };
   useEffect(() => {
     if (value) {
-      setSearch(value[text]);
+      if (multiSelect) {
+        setSelectedData(value);
+        setSearch(value[text]);
+      } else {
+        setSearch(value[text]);
+      }
+    } else {
+      setSearch(undefined);
+      setSelectedData([]);
     }
-  }, []);
+  }, [value]);
   useEffect(() => {
     if (selectedData.length > 0) {
       const params = {
@@ -120,6 +153,7 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
           }}
           $isEmpty={selectedData.length > 0}
           $isFocused={showPopup}
+          $disabled={disabled}
         >
           {selectedData.length > 0 && (
             <>
@@ -150,19 +184,21 @@ const AutocompleteComponent: React.FC<IAutocomplete> = ({
             type={'text'}
             onChange={isServerSide ? handleChangeServerSide : handleChange}
             placeholder={placeholder}
-            value={search}
+            value={search ?? ''}
+            disabled={disabled}
           />
         </AutocompleteMultiStyles>
       ) : (
         <div
           onClick={() => {
-            setShowPopup(true);
+            onShowPopupServerSide();
           }}
         >
           <TextBoxComponent
             placeholder={placeholder}
-            value={search}
+            value={search ?? ''}
             onChange={isServerSide ? handleChangeServerSide : handleChange}
+            disabled={disabled}
           ></TextBoxComponent>
         </div>
       )}
