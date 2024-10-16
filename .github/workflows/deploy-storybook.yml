@@ -27,5 +27,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: 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
+          personal_token: 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
           publish_dir: ./storybook-static
