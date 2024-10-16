@@ -3,7 +3,7 @@ name: Deploy Storybook to GitHub Pages
 on:
   push:
     branches:
-      - main  # Change this to your default branch name if necessary
+      - master  # Change this to your default branch name if necessary
 
 jobs:
   deploy:
@@ -27,5 +27,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: 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
           publish_dir: ./storybook-static
